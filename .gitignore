@@ -1,0 +1,10 @@
+
+src/cache_models/
+
+src/camPhotos/
+
+src/__pycache__/
+
+src/routes/__pycache__/
+
+src/utils/__pycache__/
