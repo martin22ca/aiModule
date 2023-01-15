@@ -1,0 +1,513 @@
+2023-01-15 01:48:44-0300 [-] Log opened.
+2023-01-15 01:48:44-0300 [-] Site starting on 9022
+2023-01-15 01:48:44-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f8b7366c220>
+2023-01-15 01:48:50-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:49 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:48:52-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:51 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:48:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:52 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:48:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:52 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:48:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:52 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:48:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:52 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:48:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:53 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:48:54-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:48:53 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:49:03-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:49:02 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:49:05-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:49:04 +0000] "GET /asd HTTP/1.1" 404 207 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:49:07-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:49:06 +0000] "GET /asd HTTP/1.1" 404 207 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:49:12-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:49:11 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:49:23-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:49:23-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:49:23-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f8b7366c220>
+2023-01-15 01:49:23-0300 [-] Main loop terminated.
+2023-01-15 01:49:52-0300 [-] Log opened.
+2023-01-15 01:49:52-0300 [-] Site starting on 9022
+2023-01-15 01:49:52-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fa0bfb70160>
+2023-01-15 01:52:19-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:52:19-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:52:19-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fa0bfb70160>
+2023-01-15 01:52:19-0300 [-] Main loop terminated.
+2023-01-15 01:52:33-0300 [-] Log opened.
+2023-01-15 01:52:33-0300 [-] Site starting on 9022
+2023-01-15 01:52:33-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fb99bf6c400>
+2023-01-15 01:52:39-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:52:39-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:52:39-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fb99bf6c400>
+2023-01-15 01:52:39-0300 [-] Main loop terminated.
+2023-01-15 01:53:52-0300 [-] Log opened.
+2023-01-15 01:53:52-0300 [-] Site starting on 9022
+2023-01-15 01:53:52-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fb82795c460>
+2023-01-15 01:53:55-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:53:55-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:53:55-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fb82795c460>
+2023-01-15 01:53:55-0300 [-] Main loop terminated.
+2023-01-15 01:55:39-0300 [-] Log opened.
+2023-01-15 01:55:39-0300 [-] Site starting on 9022
+2023-01-15 01:55:39-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f2ed2674400>
+2023-01-15 01:56:21-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:56:21-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:56:21-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f2ed2674400>
+2023-01-15 01:56:21-0300 [-] Main loop terminated.
+2023-01-15 01:56:24-0300 [-] Log opened.
+2023-01-15 01:56:24-0300 [-] Site starting on 9022
+2023-01-15 01:56:24-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f343cd7c430>
+2023-01-15 01:56:25-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:56:25-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:56:25-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f343cd7c430>
+2023-01-15 01:56:25-0300 [-] Main loop terminated.
+2023-01-15 01:56:42-0300 [-] Log opened.
+2023-01-15 01:56:42-0300 [-] Site starting on 9022
+2023-01-15 01:56:42-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fa4516783a0>
+2023-01-15 01:56:45-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:56:45-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:56:45-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fa4516783a0>
+2023-01-15 01:56:45-0300 [-] Main loop terminated.
+2023-01-15 01:57:23-0300 [-] Log opened.
+2023-01-15 01:57:23-0300 [-] Site starting on 9022
+2023-01-15 01:57:23-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fd5ad17c430>
+2023-01-15 01:57:26-0300 [-] "127.0.0.1" - - [15/Jan/2023:04:57:26 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 01:57:35-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:57:35-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:57:35-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fd5ad17c430>
+2023-01-15 01:57:35-0300 [-] Main loop terminated.
+2023-01-15 01:57:54-0300 [-] Log opened.
+2023-01-15 01:57:54-0300 [-] Site starting on 9022
+2023-01-15 01:57:54-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f47dfb74430>
+2023-01-15 01:57:58-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:57:58-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:57:58-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f47dfb74430>
+2023-01-15 01:57:58-0300 [-] Main loop terminated.
+2023-01-15 01:58:11-0300 [-] Log opened.
+2023-01-15 01:58:11-0300 [-] Site starting on 9022
+2023-01-15 01:58:11-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f6e14670400>
+2023-01-15 01:58:14-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:58:14-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:58:14-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f6e14670400>
+2023-01-15 01:58:14-0300 [-] Main loop terminated.
+2023-01-15 01:58:25-0300 [-] Log opened.
+2023-01-15 01:58:25-0300 [-] Site starting on 9022
+2023-01-15 01:58:25-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f7b4327c3a0>
+2023-01-15 01:58:27-0300 [-] Received SIGINT, shutting down.
+2023-01-15 01:58:27-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 01:58:27-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f7b4327c3a0>
+2023-01-15 01:58:27-0300 [-] Main loop terminated.
+2023-01-15 01:59:47-0300 [-] Log opened.
+2023-01-15 01:59:47-0300 [-] Site starting on 9022
+2023-01-15 01:59:47-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fd16c768490>
+2023-01-15 02:00:01-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:00:01-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:00:01-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fd16c768490>
+2023-01-15 02:00:01-0300 [-] Main loop terminated.
+2023-01-15 02:00:16-0300 [-] Log opened.
+2023-01-15 02:00:16-0300 [-] Site starting on 9022
+2023-01-15 02:00:16-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f9985974490>
+2023-01-15 02:00:17-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:00:17-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:00:17-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f9985974490>
+2023-01-15 02:00:17-0300 [-] Main loop terminated.
+2023-01-15 02:04:31-0300 [-] Log opened.
+2023-01-15 02:04:31-0300 [-] Site starting on 9022
+2023-01-15 02:04:31-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f96e5c6c430>
+2023-01-15 02:04:39-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:04:39-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:04:39-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f96e5c6c430>
+2023-01-15 02:04:39-0300 [-] Main loop terminated.
+2023-01-15 02:05:08-0300 [-] Log opened.
+2023-01-15 02:05:08-0300 [-] Site starting on 9022
+2023-01-15 02:05:08-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f0773980430>
+2023-01-15 02:05:15-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:05:15-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:05:15-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f0773980430>
+2023-01-15 02:05:15-0300 [-] Main loop terminated.
+2023-01-15 02:05:36-0300 [-] Log opened.
+2023-01-15 02:05:36-0300 [-] Site starting on 9022
+2023-01-15 02:05:36-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fbc35c74340>
+2023-01-15 02:05:39-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:05:39-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:05:39-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fbc35c74340>
+2023-01-15 02:05:39-0300 [-] Main loop terminated.
+2023-01-15 02:06:06-0300 [-] Log opened.
+2023-01-15 02:06:06-0300 [-] Site starting on 9022
+2023-01-15 02:06:06-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f60c5970370>
+2023-01-15 02:06:09-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:06:09-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:06:09-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f60c5970370>
+2023-01-15 02:06:09-0300 [-] Main loop terminated.
+2023-01-15 02:06:18-0300 [-] Log opened.
+2023-01-15 02:06:18-0300 [-] Site starting on 9022
+2023-01-15 02:06:18-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fd112b78490>
+2023-01-15 02:06:20-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:06:20-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:06:20-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fd112b78490>
+2023-01-15 02:06:20-0300 [-] Main loop terminated.
+2023-01-15 02:06:33-0300 [-] Log opened.
+2023-01-15 02:06:33-0300 [-] Site starting on 9022
+2023-01-15 02:06:33-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f63f4f703a0>
+2023-01-15 02:06:37-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:06:37-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:06:37-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f63f4f703a0>
+2023-01-15 02:06:37-0300 [-] Main loop terminated.
+2023-01-15 02:06:50-0300 [-] Log opened.
+2023-01-15 02:06:50-0300 [-] Site starting on 9022
+2023-01-15 02:06:50-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f8ea457c460>
+2023-01-15 02:06:54-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:06:54-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:06:54-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f8ea457c460>
+2023-01-15 02:06:54-0300 [-] Main loop terminated.
+2023-01-15 02:07:02-0300 [-] Log opened.
+2023-01-15 02:07:02-0300 [-] Site starting on 9022
+2023-01-15 02:07:02-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f67bfa5c460>
+2023-01-15 02:07:05-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:07:05-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:07:05-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f67bfa5c460>
+2023-01-15 02:07:05-0300 [-] Main loop terminated.
+2023-01-15 02:07:14-0300 [-] Log opened.
+2023-01-15 02:07:14-0300 [-] Site starting on 9022
+2023-01-15 02:07:14-0300 [-] Starting factory <twisted.web.server.Site object at 0x7ffa3fc5c3d0>
+2023-01-15 02:07:20-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:07:20-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:07:20-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7ffa3fc5c3d0>
+2023-01-15 02:07:20-0300 [-] Main loop terminated.
+2023-01-15 02:08:03-0300 [-] Log opened.
+2023-01-15 02:08:03-0300 [-] Site starting on 9022
+2023-01-15 02:08:03-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f464b270400>
+2023-01-15 02:08:11-0300 [-] "127.0.0.1" - - [15/Jan/2023:05:08:11 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 02:08:12-0300 [-] "127.0.0.1" - - [15/Jan/2023:05:08:11 +0000] "GET /favicon.ico HTTP/1.1" 404 207 "http://localhost:9022/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 02:08:13-0300 [-] "127.0.0.1" - - [15/Jan/2023:05:08:13 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 02:08:14-0300 [-] "127.0.0.1" - - [15/Jan/2023:05:08:14 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 02:08:37-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:08:37-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:08:37-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f464b270400>
+2023-01-15 02:08:37-0300 [-] Main loop terminated.
+2023-01-15 02:08:40-0300 [-] Log opened.
+2023-01-15 02:08:40-0300 [-] Site starting on 9022
+2023-01-15 02:08:40-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f20ff5743a0>
+2023-01-15 02:08:42-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:08:42-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:08:42-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f20ff5743a0>
+2023-01-15 02:08:42-0300 [-] Main loop terminated.
+2023-01-15 02:08:52-0300 [-] Log opened.
+2023-01-15 02:08:52-0300 [-] Site starting on 9022
+2023-01-15 02:08:52-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fa2b49743a0>
+2023-01-15 02:08:54-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:08:54-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:08:54-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fa2b49743a0>
+2023-01-15 02:08:54-0300 [-] Main loop terminated.
+2023-01-15 02:09:05-0300 [-] Log opened.
+2023-01-15 02:09:05-0300 [-] Site starting on 9022
+2023-01-15 02:09:05-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fe1296643d0>
+2023-01-15 02:09:07-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:09:07-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:09:07-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fe1296643d0>
+2023-01-15 02:09:07-0300 [-] Main loop terminated.
+2023-01-15 02:09:22-0300 [-] Log opened.
+2023-01-15 02:09:22-0300 [-] Site starting on 9022
+2023-01-15 02:09:22-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fd92376c370>
+2023-01-15 02:09:25-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:09:25-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:09:25-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fd92376c370>
+2023-01-15 02:09:25-0300 [-] Main loop terminated.
+2023-01-15 02:09:33-0300 [-] Log opened.
+2023-01-15 02:09:33-0300 [-] Site starting on 9022
+2023-01-15 02:09:33-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f9537060310>
+2023-01-15 02:09:41-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:09:41-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:09:41-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f9537060310>
+2023-01-15 02:09:41-0300 [-] Main loop terminated.
+2023-01-15 02:09:43-0300 [-] Log opened.
+2023-01-15 02:09:43-0300 [-] Site starting on 9022
+2023-01-15 02:09:43-0300 [-] Starting factory <twisted.web.server.Site object at 0x7feb7fd80400>
+2023-01-15 02:09:46-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:09:46-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:09:46-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7feb7fd80400>
+2023-01-15 02:09:46-0300 [-] Main loop terminated.
+2023-01-15 02:09:55-0300 [-] Log opened.
+2023-01-15 02:09:55-0300 [-] Site starting on 9022
+2023-01-15 02:09:55-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f6f93a6c3a0>
+2023-01-15 02:09:56-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:09:56-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:09:56-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f6f93a6c3a0>
+2023-01-15 02:09:56-0300 [-] Main loop terminated.
+2023-01-15 02:11:12-0300 [-] Log opened.
+2023-01-15 02:11:12-0300 [-] Site starting on 9022
+2023-01-15 02:11:12-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f1f7c3702e0>
+2023-01-15 02:11:13-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:11:13-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:11:13-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f1f7c3702e0>
+2023-01-15 02:11:13-0300 [-] Main loop terminated.
+2023-01-15 02:11:16-0300 [-] Log opened.
+2023-01-15 02:11:16-0300 [-] Site starting on 9022
+2023-01-15 02:11:16-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fa70867c370>
+2023-01-15 02:11:34-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:11:34-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:11:34-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fa70867c370>
+2023-01-15 02:11:34-0300 [-] Main loop terminated.
+2023-01-15 02:11:36-0300 [-] Log opened.
+2023-01-15 02:11:36-0300 [-] Site starting on 9022
+2023-01-15 02:11:36-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f81ef5443a0>
+2023-01-15 02:11:40-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:11:40-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:11:40-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f81ef5443a0>
+2023-01-15 02:11:40-0300 [-] Main loop terminated.
+2023-01-15 02:12:39-0300 [-] Log opened.
+2023-01-15 02:12:39-0300 [-] Site starting on 9022
+2023-01-15 02:12:39-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f0780b643a0>
+2023-01-15 02:12:41-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:12:41-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:12:41-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f0780b643a0>
+2023-01-15 02:12:41-0300 [-] Main loop terminated.
+2023-01-15 02:17:20-0300 [-] Log opened.
+2023-01-15 02:17:20-0300 [-] Site starting on 9022
+2023-01-15 02:17:20-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fe5c2174340>
+2023-01-15 02:17:24-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:17:24-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:17:24-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fe5c2174340>
+2023-01-15 02:17:24-0300 [-] Main loop terminated.
+2023-01-15 02:17:39-0300 [-] Log opened.
+2023-01-15 02:17:39-0300 [-] Site starting on 9022
+2023-01-15 02:17:39-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f0bbfd84370>
+2023-01-15 02:17:41-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:17:41-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:17:41-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f0bbfd84370>
+2023-01-15 02:17:41-0300 [-] Main loop terminated.
+2023-01-15 02:17:49-0300 [-] Log opened.
+2023-01-15 02:17:49-0300 [-] Site starting on 9022
+2023-01-15 02:17:49-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f30a28703a0>
+2023-01-15 02:18:00-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:18:00-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:18:00-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f30a28703a0>
+2023-01-15 02:18:00-0300 [-] Main loop terminated.
+2023-01-15 02:18:08-0300 [-] Log opened.
+2023-01-15 02:18:08-0300 [-] Site starting on 9022
+2023-01-15 02:18:08-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f0a7ca582e0>
+2023-01-15 02:18:10-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:18:10-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:18:10-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f0a7ca582e0>
+2023-01-15 02:18:10-0300 [-] Main loop terminated.
+2023-01-15 02:54:55-0300 [-] Log opened.
+2023-01-15 02:54:55-0300 [-] Site starting on 9022
+2023-01-15 02:54:55-0300 [-] Starting factory <twisted.web.server.Site object at 0x7ff1acf84100>
+2023-01-15 02:55:02-0300 [-] "127.0.0.1" - - [15/Jan/2023:05:55:01 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 02:55:02-0300 [-] "127.0.0.1" - - [15/Jan/2023:05:55:01 +0000] "GET /favicon.ico HTTP/1.1" 404 207 "http://localhost:9022/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 02:55:06-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:55:06-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:55:06-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7ff1acf84100>
+2023-01-15 02:55:06-0300 [-] Main loop terminated.
+2023-01-15 02:55:16-0300 [-] Log opened.
+2023-01-15 02:55:16-0300 [-] Site starting on 9022
+2023-01-15 02:55:16-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f0f09278160>
+2023-01-15 02:55:30-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:55:30-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:55:30-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f0f09278160>
+2023-01-15 02:55:30-0300 [-] Main loop terminated.
+2023-01-15 02:55:33-0300 [-] Log opened.
+2023-01-15 02:55:33-0300 [-] Site starting on 9022
+2023-01-15 02:55:33-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fe3fa784160>
+2023-01-15 02:55:48-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:55:48-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:55:48-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fe3fa784160>
+2023-01-15 02:55:48-0300 [-] Main loop terminated.
+2023-01-15 02:55:58-0300 [-] Log opened.
+2023-01-15 02:55:58-0300 [-] Site starting on 9022
+2023-01-15 02:55:58-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f06da574100>
+2023-01-15 02:56:07-0300 [-] Received SIGINT, shutting down.
+2023-01-15 02:56:07-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 02:56:07-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f06da574100>
+2023-01-15 02:56:07-0300 [-] Main loop terminated.
+2023-01-15 03:13:33-0300 [-] Log opened.
+2023-01-15 03:13:33-0300 [-] Site starting on 9022
+2023-01-15 03:13:33-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f360fd42d40>
+2023-01-15 03:13:40-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:13:40 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:14:00-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:00-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 03:14:00-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f360fd42d40>
+2023-01-15 03:14:00-0300 [-] Main loop terminated.
+2023-01-15 03:14:01-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:02-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:02-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:02-0300 [-] Ignoring empty camera frame.
+2023-01-15 03:14:03-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:03-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:03-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:03-0300 [-] Ignoring empty camera frame.
+2023-01-15 03:14:36-0300 [-] Log opened.
+2023-01-15 03:14:36-0300 [-] Site starting on 9022
+2023-01-15 03:14:36-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fbcdc378250>
+2023-01-15 03:14:43-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:43-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 03:14:43-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fbcdc378250>
+2023-01-15 03:14:43-0300 [-] Main loop terminated.
+2023-01-15 03:14:47-0300 [-] Log opened.
+2023-01-15 03:14:47-0300 [-] Site starting on 9022
+2023-01-15 03:14:47-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f58aa87c100>
+2023-01-15 03:14:57-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:14:57-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 03:14:57-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f58aa87c100>
+2023-01-15 03:14:57-0300 [-] Main loop terminated.
+2023-01-15 03:16:38-0300 [-] Log opened.
+2023-01-15 03:16:38-0300 [-] Site starting on 9022
+2023-01-15 03:16:38-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f08c8480160>
+2023-01-15 03:16:43-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:43 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:44-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:43 +0000] "GET /favicon.ico HTTP/1.1" 404 207 "http://localhost:9022/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:46-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:46 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:47-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:47 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:47-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:47 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:47-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:47 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:47-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:47 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:48-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:47 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:48-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:48 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:48-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:48 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:48-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:48 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:48-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:48 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:16:48-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:16:48 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:17:01-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:17:01-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 03:17:01-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f08c8480160>
+2023-01-15 03:17:01-0300 [-] Main loop terminated.
+2023-01-15 03:18:35-0300 [-] Log opened.
+2023-01-15 03:18:35-0300 [-] Site starting on 9022
+2023-01-15 03:18:35-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f4cf3274220>
+2023-01-15 03:18:36-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:18:36 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:18:39-0300 [-] "127.0.0.1" - - [15/Jan/2023:06:18:38 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 03:18:40-0300 [-] Received SIGINT, shutting down.
+2023-01-15 03:18:40-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 03:18:40-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f4cf3274220>
+2023-01-15 03:18:40-0300 [-] Main loop terminated.
+2023-01-15 15:11:39-0300 [-] Log opened.
+2023-01-15 15:11:39-0300 [-] Site starting on 9022
+2023-01-15 15:11:39-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f6b8037c160>
+2023-01-15 15:11:41-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:11:41 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:11:41-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:11:41 +0000] "GET /favicon.ico HTTP/1.1" 404 207 "http://localhost:9022/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:11:44-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:11:44 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:12:11-0300 [-] Received SIGINT, shutting down.
+2023-01-15 15:12:11-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 15:12:11-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f6b8037c160>
+2023-01-15 15:12:11-0300 [-] Main loop terminated.
+2023-01-15 15:12:13-0300 [-] Log opened.
+2023-01-15 15:12:13-0300 [-] Site starting on 9022
+2023-01-15 15:12:13-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fe0f7588160>
+2023-01-15 15:12:17-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:12:16 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:12:18-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:12:18 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:12:20-0300 [-] Received SIGINT, shutting down.
+2023-01-15 15:12:20-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 15:12:20-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fe0f7588160>
+2023-01-15 15:12:20-0300 [-] Main loop terminated.
+2023-01-15 15:12:28-0300 [-] Log opened.
+2023-01-15 15:12:28-0300 [-] Site starting on 9022
+2023-01-15 15:12:28-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fe28b9640d0>
+2023-01-15 15:12:30-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:12:29 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:12:32-0300 [-] Received SIGINT, shutting down.
+2023-01-15 15:12:32-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 15:12:32-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fe28b9640d0>
+2023-01-15 15:12:32-0300 [-] Main loop terminated.
+2023-01-15 15:12:49-0300 [-] Log opened.
+2023-01-15 15:12:49-0300 [-] Site starting on 9022
+2023-01-15 15:12:49-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f9adc78c160>
+2023-01-15 15:12:55-0300 [-] Received SIGINT, shutting down.
+2023-01-15 15:12:55-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 15:12:55-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f9adc78c160>
+2023-01-15 15:12:55-0300 [-] Main loop terminated.
+2023-01-15 15:56:51-0300 [-] Log opened.
+2023-01-15 15:56:51-0300 [-] Site starting on 9022
+2023-01-15 15:56:51-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f87f745c1f0>
+2023-01-15 15:56:56-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:56:55 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:56:58-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:56:58 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:57:12-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:57:11 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:57:33-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:57:32 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:57:37-0300 [-] Received SIGINT, shutting down.
+2023-01-15 15:57:37-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 15:57:37-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f87f745c1f0>
+2023-01-15 15:57:37-0300 [-] Main loop terminated.
+2023-01-15 15:58:04-0300 [-] Log opened.
+2023-01-15 15:58:04-0300 [-] Site starting on 9022
+2023-01-15 15:58:04-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f9772078190>
+2023-01-15 15:58:06-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:58:06 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:58:08-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:58:07 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:58:09-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:58:09 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:58:17-0300 [-] Received SIGINT, shutting down.
+2023-01-15 15:58:17-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 15:58:17-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f9772078190>
+2023-01-15 15:58:17-0300 [-] Main loop terminated.
+2023-01-15 15:58:47-0300 [-] Log opened.
+2023-01-15 15:58:47-0300 [-] Site starting on 9022
+2023-01-15 15:58:47-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fc4d4f601f0>
+2023-01-15 15:58:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:58:53 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:58:55-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:58:55 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:58:57-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:58:57 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:59:04-0300 [-] Received SIGINT, shutting down.
+2023-01-15 15:59:04-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 15:59:04-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fc4d4f601f0>
+2023-01-15 15:59:04-0300 [-] Main loop terminated.
+2023-01-15 15:59:36-0300 [-] Log opened.
+2023-01-15 15:59:36-0300 [-] Site starting on 9022
+2023-01-15 15:59:36-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f60852781c0>
+2023-01-15 15:59:38-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:59:37 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 15:59:41-0300 [-] "127.0.0.1" - - [15/Jan/2023:18:59:40 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 16:00:41-0300 [-] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=36668)
+2023-01-15 16:01:14-0300 [-] Received SIGINT, shutting down.
+2023-01-15 16:01:14-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 16:01:14-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f60852781c0>
+2023-01-15 16:01:14-0300 [-] Main loop terminated.
+2023-01-15 16:01:18-0300 [-] Log opened.
+2023-01-15 16:01:18-0300 [-] Site starting on 9022
+2023-01-15 16:01:18-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f8a90c5c160>
+2023-01-15 16:01:22-0300 [-] "127.0.0.1" - - [15/Jan/2023:19:01:22 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 16:01:24-0300 [-] "127.0.0.1" - - [15/Jan/2023:19:01:23 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 16:01:25-0300 [-] "127.0.0.1" - - [15/Jan/2023:19:01:24 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 16:01:29-0300 [-] "127.0.0.1" - - [15/Jan/2023:19:01:28 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 16:01:40-0300 [-] Received SIGINT, shutting down.
+2023-01-15 16:01:40-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 16:01:40-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f8a90c5c160>
+2023-01-15 16:01:40-0300 [-] Main loop terminated.
+2023-01-15 16:07:46-0300 [-] Log opened.
+2023-01-15 16:07:46-0300 [-] Site starting on 9022
+2023-01-15 16:07:46-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f953d66c1c0>
+2023-01-15 16:11:04-0300 [-] Received SIGINT, shutting down.
+2023-01-15 16:11:04-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 16:11:04-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f953d66c1c0>
+2023-01-15 16:11:04-0300 [-] Main loop terminated.
+2023-01-15 16:12:00-0300 [-] Log opened.
+2023-01-15 16:12:00-0300 [-] Site starting on 9022
+2023-01-15 16:12:00-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f0e4af981c0>
+2023-01-15 16:31:48-0300 [-] Received SIGINT, shutting down.
+2023-01-15 16:31:48-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 16:31:48-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f0e4af981c0>
+2023-01-15 16:31:48-0300 [-] Main loop terminated.
+2023-01-15 17:44:54-0300 [-] Log opened.
+2023-01-15 17:44:54-0300 [-] Site starting on 9022
+2023-01-15 17:44:54-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f79eb078130>
+2023-01-15 17:45:01-0300 [-] Received SIGINT, shutting down.
+2023-01-15 17:45:01-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 17:45:01-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f79eb078130>
+2023-01-15 17:45:01-0300 [-] Main loop terminated.
+2023-01-15 17:49:23-0300 [-] Log opened.
+2023-01-15 17:49:23-0300 [-] Site starting on 9022
+2023-01-15 17:49:23-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f5812264220>
+2023-01-15 17:49:28-0300 [-] Received SIGINT, shutting down.
+2023-01-15 17:49:28-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 17:49:28-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f5812264220>
+2023-01-15 17:49:28-0300 [-] Main loop terminated.
+2023-01-15 17:53:28-0300 [-] Log opened.
+2023-01-15 17:53:28-0300 [-] Site starting on 9022
+2023-01-15 17:53:28-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fd447b94370>
+2023-01-15 17:53:37-0300 [-] Received SIGINT, shutting down.
+2023-01-15 17:53:37-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 17:53:37-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fd447b94370>
+2023-01-15 17:53:37-0300 [-] Main loop terminated.
+2023-01-15 17:53:45-0300 [-] Log opened.
+2023-01-15 17:53:45-0300 [-] Site starting on 9022
+2023-01-15 17:53:45-0300 [-] Starting factory <twisted.web.server.Site object at 0x7f40b9a5c220>
+2023-01-15 17:53:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:20:53:52 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 17:53:53-0300 [-] "127.0.0.1" - - [15/Jan/2023:20:53:52 +0000] "GET /favicon.ico HTTP/1.1" 404 207 "http://localhost:9022/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 17:54:04-0300 [-] "127.0.0.1" - - [15/Jan/2023:20:54:03 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 17:54:11-0300 [-] "127.0.0.1" - - [15/Jan/2023:20:54:11 +0000] "GET / HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 17:54:13-0300 [-] "127.0.0.1" - - [15/Jan/2023:20:54:12 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 17:54:18-0300 [-] Received SIGINT, shutting down.
+2023-01-15 17:54:18-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 17:54:18-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7f40b9a5c220>
+2023-01-15 17:54:18-0300 [-] Main loop terminated.
+2023-01-15 17:54:21-0300 [-] Log opened.
+2023-01-15 17:54:21-0300 [-] Site starting on 9022
+2023-01-15 17:54:21-0300 [-] Starting factory <twisted.web.server.Site object at 0x7fe249878400>
+2023-01-15 17:54:24-0300 [-] "127.0.0.1" - - [15/Jan/2023:20:54:24 +0000] "GET /stud HTTP/1.1" 200 10 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+2023-01-15 17:55:40-0300 [-] Received SIGINT, shutting down.
+2023-01-15 17:55:40-0300 [twisted.web.server.Site] (TCP Port 9022 Closed)
+2023-01-15 17:55:40-0300 [-] Stopping factory <twisted.web.server.Site object at 0x7fe249878400>
+2023-01-15 17:55:40-0300 [-] Main loop terminated.
