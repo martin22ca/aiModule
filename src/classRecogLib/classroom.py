@@ -3,40 +3,39 @@ import cv2
 import json
 import time
 import socket
-from pathlib import Path
-from dotenv import load_dotenv
 from datetime import datetime,date
-from faceRecogLIb.faceRecogLib import encodeFace,predictClass,findFaces,loadKNN,loadDetectionModel,loadRecognitionModel
+from classRecogLib.faceRecog import encodeFace,predictClass,findFaces,loadKNN,loadDetectionModel,loadRecognitionModel
 
 class classroom():
-    def __init__(self):
-        load_dotenv()
-        ip_address = socket.gethostbyname(socket.gethostname()+".local")
-        id_classroom = os.getenv('CLASSROOM')
-        basePath = str(Path.home())+'/Aistencias/'
+    def __init__(self,commPipe,workDir):
+        ipAddress = socket.gethostbyname(socket.gethostname()+".local")
+        workDir = str(workDir)
+        attendenceDir = workDir + '/attendence/'
 
-        if not os.path.exists(basePath):
-            os.makedirs(basePath)
-        todayDir = basePath+str(date.today())+'/'
+        if not os.path.exists(attendenceDir):
+            os.makedirs(attendenceDir)
+        todayDir = attendenceDir+str(date.today())+'/'
 
-        self.id = id_classroom
-        self.ip = ip_address
+        with open(workDir+'/config.json') as f:
+            parsedJson = json.load(f)
+            self.idClassroom = parsedJson['classroom']
+            self.idClass = parsedJson['class']
+
+        self.ip = ipAddress
         self.students = {}
         self.workDir = todayDir
         self.faceDetector = loadDetectionModel()
-        self.faceRecognizer = loadRecognitionModel()
-        self.KNNModel = loadKNN()
+        self.faceRecognizer = loadRecognitionModel(workDir+'/models/')
+        self.KNNModel = loadKNN(workDir+'/models/')
         self.prevTime = time.time()
         self.onTime = True
+        self.commPipe = commPipe
 
         if not os.path.exists(todayDir):
             os.makedirs(todayDir)
         else:
-            print('continue Day')
+            print('Continue Day')
             self.loadPreviousData()
-    
-    def getStudents(self):
-        print(self.students)
 
     def loadPreviousData(self):
         for stud in os.listdir(self.workDir):
@@ -47,27 +46,26 @@ class classroom():
             except:
                 continue
 
-    def classLoop(self,communicationQueue):
+    def classLoop(self):
         cam = cv2.VideoCapture(0)
         while(cam.isOpened()):
-            if communicationQueue.empty():
+            if self.commPipe.poll():
+                res = self.commPipe.recv()
+                self.manageMsg(res)
+            else:
                 success, image = cam.read()
                 if not success:
                     print("Ignoring empty camera frame.")
                     continue
                 else:
                     self.detectFace(image)
-            else:
-                res = communicationQueue.get()
-                self.manageMsg(res)
     
     def manageMsg(self, msg):
         instruct = msg[0]
         value = msg[1]
 
         if instruct == 0:
-            self.getStudents()
-            return None
+            self.commPipe.send(self.students)
         if instruct == 1:
             self.onTime = value
             return None
@@ -75,9 +73,11 @@ class classroom():
     def validateStudent(self,face,studentId,pred):
         if studentId not in self.students.keys():
             if float(pred) > 0.8:
+                print('New student:',studentId)
                 student = {
                     "studentId": studentId,
-                    "classId": self.id,
+                    "classId": self.idClass,
+                    "classroomId": self.idClassroom,
                     "certenty": float(pred),
                     "timeOfEntry": str(datetime.now().replace(second=0, microsecond=0)),
                     "onTime":self.onTime

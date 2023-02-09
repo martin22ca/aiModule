@@ -1,41 +1,35 @@
-from faceRecogLIb.classroom import classroom
-from multiprocessing import Process, Queue
+from classRecogLib.classroom import classroom 
+import pathlib
+import json
+from multiprocessing import Process, Pipe
 from klein import Klein
-from dotenv import load_dotenv
 
-load_dotenv()
-
-
-def runserver(interface, port,communicationQueue):
+def runserver(interface, port,commPipe):
     logfilename = open('localhost' + str(port) + '.log', 'a')
     app = Klein()
     @app.route('/',methods=['GET'])
     def pg_root(request):
-        communicationQueue.put([1,0])
-        return 'IM WORKING'
+        commPipe.send([1,0])
+        request.setResponseCode(200)
+        return 'Students are now Late'
 
     @app.route('/stud',methods=['GET'])
     def pg_stud(request):
-        communicationQueue.put([0,0])
-        return 'IM WORKING'
+        commPipe.send([0,0])
+        if commPipe.poll(timeout=5):
+            stude = commPipe.recv()
+            request.setResponseCode(200)
+            return json.dumps(stude)
+        else: 
+            request.setResponseCode(404)
+            return 'Time Out'
 
     app.run(interface, port, logfilename)
 
-def loopClass(classroom,queue):
-    while True:
-        classroom.detectFace()
-        print(queue.get())
-
 if __name__ == '__main__':
-    communicationQueue = Queue()
-    communicationQueue.put([42, None, 'hello'])
-    todayClass = classroom()
+    aPipe, bPipe = Pipe(duplex=True)
+    todayClass = classroom(aPipe,pathlib.Path(__file__).parent.resolve())
 
-    serverLoop = Process(target=runserver, args=('localhost',9022,communicationQueue))
+    serverLoop = Process(target=runserver, args=('localhost',9022,bPipe))
     serverLoop.start()
-    todayClass.classLoop(communicationQueue)
-
-
-
-    
-    
+    todayClass.classLoop()

@@ -2,32 +2,28 @@ import cv2
 import math
 import dlib
 import pickle 
-import pathlib
 import numpy as np
 import mediapipe as mp
-from sklearn.neighbors import KNeighborsClassifier
-from faceRecogLIb.utils import getAngle,getNewLocations,rotate_image
+from classRecogLib.utils import getAngle,getNewLocations,rotate_image
 
-baseModelPath = str(pathlib.Path(__file__).parent.resolve())+'/models/'
-
-def loadKNN():
+def loadKNN(baseDir):
     """
     Returns an K-Nearest Neighbors Model with the encodings for the faces
 
     :return: an K-Nearest Neighbors Model with the encodings for the faces
     """
-    with (open(baseModelPath +'knnpickle_file.pickle', 'rb')) as f:
+    with (open(baseDir +'knnPickleFile.pickle', 'rb')) as f:
         knn = pickle.load(f)
         return knn
 
-def loadRecognitionModel():
+def loadRecognitionModel(baseDir):
     """
     Returns the models required to encode the faces
 
     :return: the models required to encode the faces
     """
-    pose_predictor_5_point = dlib.shape_predictor(baseModelPath+'shape_predictor_5_face_landmarks.dat')
-    face_encoder = dlib.face_recognition_model_v1(baseModelPath+'dlib_face_recognition_resnet_model_v1.dat')
+    pose_predictor_5_point = dlib.shape_predictor(baseDir+'shape_predictor_5_face_landmarks.dat')
+    face_encoder = dlib.face_recognition_model_v1(baseDir+'dlib_face_recognition_resnet_model_v1.dat')
 
     return pose_predictor_5_point,face_encoder
 
