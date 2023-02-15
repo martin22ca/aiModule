@@ -8,3 +8,7 @@ src/__pycache__/
 src/routes/__pycache__/
 
 src/utils/__pycache__/
+
+src/attendence/
+
+localhost9022.log

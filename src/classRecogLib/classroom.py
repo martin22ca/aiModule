@@ -5,7 +5,7 @@ import time
 import socket
 from datetime import datetime, date
 from classRecogLib.faceRecog import encodeFace, predictClass, findFaces, loadKNN, loadDetectionModel, loadRecognitionModel
-from classRecogLib.utils import resizeAndPad,getMacAddr
+from classRecogLib.utils import resizeAndPad, getMacAddr
 
 
 class classroom():
@@ -21,9 +21,10 @@ class classroom():
         with open(workDir+'/config.json') as f:
             parsedJson = json.load(f)
             self.idClassroom = parsedJson['classroom']
-            self.onTime = parsedJson['onTime']
 
-        self.ip = ipAddress
+        self.mainServerIp = None
+        self.onTime = False
+        self.ipAddr = ipAddress
         self.macAddr = getMacAddr()
         self.students = {}
         self.workDir = todayDir
@@ -63,34 +64,60 @@ class classroom():
                     self.detectFace(image)
 
     def manageMsg(self, msg):
-        instruct = msg[0]
-        value = msg[1]
+        switcher = {
+            0: self.getClassRoom,
+            1: self.setLate,
+            2: self.getStudents,
+        }
+        return switcher[msg[0]](msg[1])
 
-        if instruct == 0:
-            self.commPipe.send(self.students)
-        if instruct == 1:
-            self.onTime = value
-            return None
+    def getStudents(self, inst):
+        print('entre')
+        self.commPipe.send(self.students)
+        return None
+
+    def setLate(self, inst):
+        self.onTime = False
+        return None
+
+    def getClassRoom(self, inst):
+        self.mainServerIp = inst
+        thisClassroom = {
+            "id": self.idClassroom,
+            "ipAddr": self.ipAddr,
+            "macAddr": self.macAddr
+        }
+        self.commPipe.send(thisClassroom)
+        return None
 
     def validateStudent(self, face, studentId, pred):
         if studentId not in self.students.keys():
             if float(pred) > 0.8:
                 print('New student:', studentId)
+                studentDir = self.workDir+'student-'+str(studentId)+'/'
+                os.makedirs(studentDir)
+                imgPath = studentDir+'student-picture.jpg'
                 student = {
                     "studentId": studentId,
                     "classroomId": self.idClassroom,
-                    "certenty": float(pred),
+                    "certainty": float(pred),
                     "timeOfEntry": str(datetime.now().replace(second=0, microsecond=0)),
-                    "onTime": self.onTime
+                    "onTime": self.onTime,
+                    "pathToImg": imgPath
                 }
                 self.students[studentId] = student
-                studentDir = self.workDir+'student-'+str(studentId)+'/'
-                os.makedirs(studentDir)
                 with open(studentDir+"info.json", "w") as write_file:
                     json.dump(student, write_file, indent=4)
+
                 face = resizeAndPad(face, (200, 200), 0)
                 cv2.imwrite(studentDir+'student-picture.jpg',
                             face, [cv2.IMWRITE_JPEG_QUALITY, 93])
+
+                if self.mainServerIp != None:
+                    print('MANDO DATA')
+
+                return None
+        return None
 
     def detectFace(self, image):
         faces = findFaces(image, self.faceDetector)
