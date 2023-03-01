@@ -3,13 +3,14 @@ import cv2
 import json
 import time
 import socket
+import requests
 from datetime import datetime, date
 from classRecogLib.faceRecog import encodeFace, predictClass, findFaces, loadKNN, loadDetectionModel, loadRecognitionModel
 from classRecogLib.utils import resizeAndPad, getMacAddr
 
 
 class classroom():
-    def __init__(self, commPipe, workDir):
+    def __init__(self, idClassroom, mainServerIp, commPipe, workDir):
         ipAddress = socket.gethostbyname(socket.gethostname()+".local")
         workDir = str(workDir)
         attendenceDir = workDir + '/attendence/'
@@ -18,11 +19,8 @@ class classroom():
             os.makedirs(attendenceDir)
         todayDir = attendenceDir+str(date.today())+'/'
 
-        with open(workDir+'/config.json') as f:
-            parsedJson = json.load(f)
-            self.idClassroom = parsedJson['classroom']
-
-        self.mainServerIp = None
+        self.idClassroom = idClassroom
+        self.mainServerIp = mainServerIp
         self.onTime = False
         self.ipAddr = ipAddress
         self.macAddr = getMacAddr()
@@ -98,6 +96,7 @@ class classroom():
                 os.makedirs(studentDir)
                 imgPath = studentDir+'student-picture.jpg'
                 student = {
+
                     "studentId": studentId,
                     "classroomId": self.idClassroom,
                     "certainty": float(pred),
@@ -110,11 +109,12 @@ class classroom():
                     json.dump(student, write_file, indent=4)
 
                 face = resizeAndPad(face, (200, 200), 0)
-                cv2.imwrite(studentDir+'student-picture.jpg',
-                            face, [cv2.IMWRITE_JPEG_QUALITY, 93])
+                cv2.imwrite(imgPath,face, [cv2.IMWRITE_JPEG_QUALITY, 93])
 
-                if self.mainServerIp != None:
-                    print('MANDO DATA')
+                url = 'http://'+self.mainServerIp+'newStudent'
+                file = {'media': open(imgPath, 'rb')}
+                response = requests.post(url,data=student,files=file)
+                print(response.status_code, response.reason)
 
                 return None
         return None

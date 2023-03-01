@@ -53,8 +53,9 @@ def predictClass(encoding, knn):
     :return: A list of tuples of found face locations in css (top, right, bottom, left) order
     """
     encoding = np.array(encoding).reshape(1, -1)
-    probabilty = np.max(knn.predict_proba(encoding)[0])
-    prediction = knn.predict(encoding)[0]
+    res = knn.predict_proba(encoding)[0]
+    prediction = int(np.argmax(res[0])+1)
+    probabilty = int(np.max(res))
 
     return [prediction, probabilty]
 

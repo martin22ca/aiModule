@@ -3,6 +3,7 @@ from json import dumps
 from pathlib import Path
 from multiprocessing import Process, Pipe
 from klein import Klein
+import tomli
 
 
 def runserver(interface, port, commPipe):
@@ -43,8 +44,13 @@ def runserver(interface, port, commPipe):
 
 
 if __name__ == '__main__':
+    fp = open("config.toml", mode="rb")
+    config = tomli.load(fp)
+    fp.close()
+    ipServer = 'localhost:5000/'
+
     aPipe, bPipe = Pipe(duplex=True)
-    todayClass = classroom(aPipe, Path(__file__).parent.resolve())
+    todayClass = classroom(config['constant']['classroom'],ipServer,aPipe, Path(__file__).parent.resolve())
 
     serverLoop = Process(target=runserver, args=('localhost', 9022, bPipe))
     serverLoop.start()
