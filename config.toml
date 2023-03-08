@@ -1,7 +1,4 @@
-# tic_tac_toe.toml
 [constant]
 classroom = 1
 
 [server]
-mac = "asdasd" 
-url = "https://tictactoe.example.com"

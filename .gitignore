@@ -12,3 +12,5 @@ src/utils/__pycache__/
 src/attendence/
 
 localhost9022.log
+
+src/classRecogLib/__pycache__/

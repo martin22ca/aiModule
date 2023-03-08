@@ -47,10 +47,12 @@ if __name__ == '__main__':
     fp = open("config.toml", mode="rb")
     config = tomli.load(fp)
     fp.close()
-    ipServer = 'localhost:5000/'
 
     aPipe, bPipe = Pipe(duplex=True)
-    todayClass = classroom(config['constant']['classroom'],ipServer,aPipe, Path(__file__).parent.resolve())
+    CLASSROOMNUM = config['constant']['classroom']
+    MODELSPATH = Path(__file__).parent.resolve()
+    
+    todayClass = classroom(CLASSROOMNUM,aPipe, MODELSPATH)
 
     serverLoop = Process(target=runserver, args=('localhost', 9022, bPipe))
     serverLoop.start()
