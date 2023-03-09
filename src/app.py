@@ -1,9 +1,9 @@
-from classRecogLib.classroom import classroom
+import tomli
 from json import dumps
+from klein import Klein
 from pathlib import Path
 from multiprocessing import Process, Pipe
-from klein import Klein
-import tomli
+from classroomLib.classroom import classroom
 
 
 def runserver(interface, port, commPipe):
@@ -25,16 +25,16 @@ def runserver(interface, port, commPipe):
 
     @app.route('/late', methods=['GET'])
     def statusLate(request):
-        commPipe.send([1])
+        commPipe.send([1,None])
         request.setResponseCode(200)
         return 'Students are now Late'
 
     @app.route('/stud', methods=['GET'])
     def getStudents(request):
-        commPipe.send([2])
+        commPipe.send([2,None])
         if commPipe.poll(timeout=5):
             stude = commPipe.recv()
-            request.setResponseCode(500)
+            request.setResponseCode(200)
             return dumps(stude)
         else:
             request.setResponseCode(400)

@@ -2,47 +2,50 @@ import os
 import cv2
 import json
 import time
-import socket
 import requests
+import numpy as np
 from pathlib import Path
 from datetime import datetime, date
+from socket import gethostbyname,gethostname
 from classRecogLib.faceRecog import encodeFace, predictClass, findFaces, loadKNN, loadDetectionModel, loadRecognitionModel
 from classRecogLib.utils import resizeAndPad, getMacAddr
 
 
 class classroom():
     def __init__(self, idClassroom, commPipe, modelsDir):
-        ipAddress = socket.gethostbyname(socket.gethostname()+".local")
+        ipAddress = gethostbyname(gethostname()+".local")
         modelsDir = str(modelsDir)
         attendenceDir = str(Path.home())+ '/attendence/'
 
         if not os.path.exists(attendenceDir):
             os.makedirs(attendenceDir)
 
-        todayDir = attendenceDir+str(date.today())+'/'
-
         self.idClassroom = idClassroom
         self.mainServerIp = None
-        self.onTime = False
+        self.onTime = True
         self.ipAddr = ipAddress
         self.macAddr = getMacAddr()
         self.students = {}
-        self.workDir = todayDir
+        self.todayDir = attendenceDir+str(date.today())+'/'
         self.faceDetector = loadDetectionModel()
         self.faceRecognizer = loadRecognitionModel(modelsDir+'/models/')
         self.KNNModel = loadKNN(modelsDir+'/models/')
         self.prevTime = time.time()
         self.commPipe = commPipe
 
-        if not os.path.exists(todayDir):
-            os.makedirs(todayDir+'toSend/')
-            os.makedirs(todayDir+'sent')
+        if not os.path.exists(self.todayDir):
+            os.makedirs(self.todayDir+'toSend/')
+            os.makedirs(self.todayDir+'sent')
         else:
             print('Continue Day')
             self.loadPreviousData()
 
     def loadPreviousData(self):
-        dirs =[self.workDir+'toSend/',self.workDir+'sent/'] 
+        if os.path.exists(self.todayDir+'closed.json'):
+            self.onTime = False
+            print('Students are now Late')
+            
+        dirs =[self.todayDir+'toSend/',self.todayDir+'sent/'] 
         for dir in dirs:
             for stud in os.listdir(dir):
                 try:
@@ -69,21 +72,13 @@ class classroom():
 
     def manageMsg(self, msg):
         switcher = {
-            0: self.getClassRoom,
+            0: self.setMainServerIp,
             1: self.setLate,
             2: self.getStudents,
         }
         return switcher[msg[0]](msg[1])
 
-    def getStudents(self, inst):
-        self.commPipe.send(self.students)
-        return None
-
-    def setLate(self, inst):
-        self.onTime = False
-        return None
-
-    def getClassRoom(self, inst):
+    def setMainServerIp(self,inst):
         self.mainServerIp = inst
         thisClassroom = {
             "id": self.idClassroom,
@@ -92,8 +87,22 @@ class classroom():
         }
         self.commPipe.send(thisClassroom)
         return None
+    
+    def getStudents(self, inst):
+        self.commPipe.send(self.students)
+        return None
 
-    def validateStudent(self, face, studentId, pred):
+    def setLate(self, inst):
+        closedJson = {
+            "ClosingTime":str(time.time())
+        }
+        with open(self.todayDir+"closed.json", "w") as write_file:
+            json.dump(closedJson, write_file)
+
+        self.onTime = False
+        return None
+
+    def validateStudent(self, face, studentId, pred,dst):
         if studentId not in self.students.keys():
             if float(pred) > 0.8:
                 print('New student:', studentId)
@@ -104,23 +113,24 @@ class classroom():
                     "certainty": float(pred),
                     "timeOfEntry": str(datetime.now().replace(second=0, microsecond=0)),
                     "onTime": self.onTime,
+                    "distance": dst.tolist()[0]
                 }
                 self.students[studentId] = student
                 if self.mainServerIp == None:
-                    studentDir = self.workDir+'toSend/student-'+str(studentId)+'/'
+                    studentDir = self.todayDir+'toSend/student-'+str(studentId)+'/'
                     os.makedirs(studentDir)
                     imgPath = studentDir+'student-picture.jpg'
                     with open(studentDir+"info.json", "w") as write_file:
                         json.dump(student, write_file, indent=4)
-                    face = resizeAndPad(face, (160, 160), 0)
+                    face = resizeAndPad(face, (200, 200), 0)
                     cv2.imwrite(imgPath,face, [cv2.IMWRITE_JPEG_QUALITY, 93])
                 else:
-                    studentDir = self.workDir+'sent/student-'+str(studentId)+'/'
+                    studentDir = self.todayDir+'sent/student-'+str(studentId)+'/'
                     os.makedirs(studentDir)
                     imgPath = studentDir+'student-picture.jpg'
                     with open(studentDir+"info.json", "w") as write_file:
                         json.dump(student, write_file, indent=4)
-                    face = resizeAndPad(face, (160, 160), 0)
+                    face = resizeAndPad(face, (200, 200), 0)
                     cv2.imwrite(imgPath,face, [cv2.IMWRITE_JPEG_QUALITY, 93])
                     url = 'http://'+self.mainServerIp+'newStudent'
                     file = {'media': open(imgPath, 'rb')}
@@ -135,12 +145,12 @@ class classroom():
         faces = findFaces(image, self.faceDetector)
         for i, face in enumerate(faces):
             now = time.time()
-            if (now - self.prevTime) > 0.5:
+            if (now - self.prevTime) > 0.6:
                 self.prevTime = now
                 encoding = encodeFace(face, self.faceRecognizer)
                 prediction = predictClass(encoding, self.KNNModel)
                 if prediction != None:
-                    self.validateStudent(face, prediction[0], prediction[1])
+                    self.validateStudent(face, prediction[0], prediction[1],prediction[2])
 
 
 if __name__ == '__main__':

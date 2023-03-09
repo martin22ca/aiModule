@@ -1,7 +1,12 @@
 from math import atan, cos, sin
 from getmac import get_mac_address as gma
-from numpy import ndarray, array, round, floor, ceil
+from numpy import linalg,ndarray, array, round, floor, ceil
 from cv2 import getRotationMatrix2D, warpAffine, resize, copyMakeBorder, INTER_LINEAR, INTER_AREA, INTER_CUBIC, BORDER_CONSTANT
+
+def normalize_2d(matrix):
+    norm = linalg.norm(matrix)
+    matrix = matrix/norm  # normalized matrix
+    return matrix
 
 
 def rotate_image(image, angle):

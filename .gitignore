@@ -14,3 +14,7 @@ src/attendence/
 localhost9022.log
 
 src/classRecogLib/__pycache__/
+
+src/classroomLib/__pycache__/
+
+misses/

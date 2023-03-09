@@ -66,10 +66,10 @@ def findFaces(image, faceDetector):
     if results.detections:
         for detection in results.detections:
             bbox = detection.location_data.relative_bounding_box
-            xMin = int(bbox.xmin * imgWidth-10)
-            yMin = int(bbox.ymin * imgHeight-10)
-            w = int(bbox.width * imgWidth+10)
-            h = int(bbox.height * imgHeight+10)
+            xMin = int(bbox.xmin * imgWidth)
+            yMin = int(bbox.ymin * imgHeight)
+            w = int(bbox.width * imgWidth)
+            h = int(bbox.height * imgHeight)
             try:
                 asp = h/w
                 if asp < 2 or asp > 1/2:
@@ -84,7 +84,6 @@ def findFaces(image, faceDetector):
                         [(xMin+w/2), (yMin+h/2)], centerImage, -angle)
                     crop = imageC[int(newY-h/2):int(newY+h/2),
                                   int(newX-w/2):int(newX+w/2)]
-                    crop = resizeAndPad(crop,(160,160))
                     facesFound.append(crop)
 
             except:
@@ -138,6 +137,6 @@ def predictClass(encoding, knnClasifier):
     maxValue = max(c, key=c.get)
     prob = (c[maxValue])/5
     if prob >= 0.8:
-        return [maxValue,prob]
+        return [maxValue,prob,neighDis]
     else: 
         return None
