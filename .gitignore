@@ -18,3 +18,11 @@ src/classRecogLib/__pycache__/
 src/classroomLib/__pycache__/
 
 misses/
+
+0.0.0.0:9022.log
+
+src/daemonManager/__pycache__/
+
+src/zeroConfDNS/__pycache__/
+
+test.py
