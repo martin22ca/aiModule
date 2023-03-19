@@ -7,13 +7,12 @@ import base64
 from pathlib import Path
 from datetime import datetime, date
 from socket import gethostbyname,gethostname
-from classRecogLib.faceRecog import encodeFace, predictClass, findFaces, loadKNN, loadDetectionModel, loadRecognitionModel
-from classRecogLib.utils import resizeAndPad, getMacAddr
+from recogLib.faceRecog import encodeFace, predictClass, findFaces, loadKNN, loadDetectionModel, loadRecognitionModel
+from recogLib.utils import resizeAndPad
 
 class Classroom():
-    def __init__(self, idClassroom, modelsDir,commPipe,serverIp, serverPort):
+    def __init__(self, idClassroom,commPipe,serverIp):
         ipAddress = gethostbyname(gethostname()+".local")
-        modelsDir = str(modelsDir)
         attendenceDir = str(Path.home())+ '/attendence/'
 
         if not os.path.exists(attendenceDir):
@@ -24,13 +23,12 @@ class Classroom():
         self.mainServerIp = serverIp
         self.onTime = True
         self.ipAddr = ipAddress
-        self.serverPort = serverPort
-        self.macAddr = getMacAddr()
+
         self.students = {}
         self.todayDir = attendenceDir+str(date.today())+'/'
         self.faceDetector = loadDetectionModel()
-        self.faceRecognizer = loadRecognitionModel(modelsDir+'/models/')
-        self.KNNModel = loadKNN(modelsDir+'/models/')
+        self.faceRecognizer = loadRecognitionModel()
+        self.KNNModel = loadKNN()
         self.prevTime = time.time()
         self.commPipe = commPipe
 
@@ -38,7 +36,6 @@ class Classroom():
             os.makedirs(self.todayDir)
 
         else:
-            print('Continue Day')
             self.loadPreviousData()
 
     def loadPreviousData(self):
@@ -51,13 +48,12 @@ class Classroom():
                 with open(dir+stud+'/info.json', 'r') as f:
                     student = json.load(f)
                     self.students[student['studentId']] = student
-                    print('load:',stud)
             except:
                 continue
 
     def classLoop(self):
         cam = cv2.VideoCapture(0)
-        while (cam.isOpened()) or self.close == True:
+        while (cam.isOpened()) and self.close == False:
             if self.commPipe.poll():
                 res = self.commPipe.recv()
                 self.manageMsg(res)
@@ -100,16 +96,14 @@ class Classroom():
                     json.dump(student, write_file, indent=4)
                 face = resizeAndPad(face, (200, 200), 0)
                 cv2.imwrite(imgPath,face, [cv2.IMWRITE_JPEG_QUALITY, 93])
-                url = 'http://'+self.mainServerIp+':'+str(self.serverPort)+'/attendece/newAttendence'
+                url = 'http://'+self.mainServerIp+':5000/attendece/newAttendence'
 
                 #encode image
                 string_img = base64.b64encode(cv2.imencode('.jpg', face)[1]).decode()
                 student['image'] = string_img
-                print(url)
 
                 #send json to server
                 response = requests.post(url , json=student)
-                print(response.status_code,response.content)
                 return None
         return None
 

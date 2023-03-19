@@ -1,10 +1,9 @@
 from socket import inet_ntoa
-from zeroconf import ServiceBrowser, Zeroconf
+from zeroconf import Zeroconf
 
 class FlaskServerListener:
     def __init__(self,serverName):
         self.serverIp = None
-        self.serverPort = None
         self.serverName = serverName
 
     def add_service(self, zeroconf, service_type, name):
@@ -12,7 +11,6 @@ class FlaskServerListener:
             info = zeroconf.get_service_info(service_type, name)
             if info is not None:
                 self.serverIp = inet_ntoa((info.addresses[0]))
-                self.serverPort = (info.port)
                 
 
     def update_service(self, zc: "Zeroconf", type_: str, name: str) -> None:

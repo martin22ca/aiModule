@@ -3,34 +3,37 @@ import math
 import dlib
 import pickle
 import numpy as np
+import sklearn
 import mediapipe as mp
 from collections import Counter
-from classRecogLib.utils import getAngle, getNewLocations, rotate_image, resizeAndPad
+from recogLib.utils import getAngle, getNewLocations, rotate_image, resizeAndPad
 
+MODELSDIR = (__file__.split("faceRecog.py"))[0] + 'models/'
 
-def loadKNN(baseDir):
+def loadKNN():
     """
     Returns an K-Nearest Neighbors Model with the encodings for the faces
 
     :return: an K-Nearest Neighbors Model with the encodings for the faces
     """
-    with (open(baseDir + 'knnPickleFile.pickle', 'rb')) as f:
+
+    with (open(MODELSDIR + 'knnPickleFile.pickle', 'rb')) as f:
         knn = pickle.load(f)
-    with(open(baseDir + 'namesFile.pickle', 'rb')) as f:
+    with(open(MODELSDIR + 'namesFile.pickle', 'rb')) as f:
         names = pickle.load(f)
     return knn,names
 
 
-def loadRecognitionModel(baseDir):
+def loadRecognitionModel():
     """
     Returns the models required to encode the faces
 
     :return: the models required to encode the faces
     """
     pose_predictor_5_point = dlib.shape_predictor(
-        baseDir+'shape_predictor_5_face_landmarks.dat')
+        MODELSDIR+'shape_predictor_5_face_landmarks.dat')
     face_encoder = dlib.face_recognition_model_v1(
-        baseDir+'dlib_face_recognition_resnet_model_v1.dat')
+        MODELSDIR+'dlib_face_recognition_resnet_model_v1.dat')
 
     return pose_predictor_5_point, face_encoder
 

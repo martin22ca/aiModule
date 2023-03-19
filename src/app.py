@@ -7,6 +7,8 @@ from multiprocessing import Process, Pipe
 from daemonManager.classroom import Classroom
 from zeroconf import ServiceBrowser, Zeroconf
 
+CONFIGPATH = (__file__.split("app.py"))[0] 
+
 def runserver(interface, port, commPipe):
     logfilename = open('0.0.0.0:' + str(port) + '.log', 'a')
     app = Klein()
@@ -19,7 +21,7 @@ def runserver(interface, port, commPipe):
     app.run(interface, port, logfilename)
 
 if __name__ == '__main__':
-    fp = open("config.toml", mode="rb")
+    fp = open(CONFIGPATH+"config.toml", mode="rb")
     config = tomli.load(fp)
     fp.close()
 
@@ -30,20 +32,18 @@ if __name__ == '__main__':
     listener = FlaskServerListener('flaskServer')
     browser = ServiceBrowser(zeroconf, "_http._tcp.local.", listener)
 
+    print('serching for server')
     while listener.serverIp is None:
         sleep(1)
     
-    print('Found Server')
     serverIP = listener.serverIp
-    serverPort = listener.serverPort
 
     del listener,browser,zeroconf
     
     aPipe, bPipe = Pipe(duplex=True)
     CLASSROOMNUM = config['constant']['classroom']
-    MODELSPATH = Path(__file__).parent.resolve()
     
-    todayClass = Classroom(CLASSROOMNUM, MODELSPATH,aPipe , serverIP,serverPort)
+    todayClass = Classroom(CLASSROOMNUM, aPipe , serverIP)
 
     serverLoop = Process(target=runserver, args=('localhost', 9022, bPipe))
     serverLoop.start()

@@ -26,3 +26,9 @@ src/daemonManager/__pycache__/
 src/zeroConfDNS/__pycache__/
 
 test.py
+
+.venv/
+
+dist/
+
+build/

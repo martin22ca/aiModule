@@ -1,5 +1,4 @@
 from math import atan, cos, sin
-from getmac import get_mac_address as gma
 from numpy import linalg, ndarray, array, round, floor, ceil
 from cv2 import getRotationMatrix2D, warpAffine, resize, copyMakeBorder, INTER_LINEAR, INTER_AREA, INTER_CUBIC, BORDER_CONSTANT
 
@@ -80,7 +79,3 @@ def resizeAndPad(img, size, padColor=0):
         scaled_img, pad_top, pad_bot, pad_left, pad_right, borderType=BORDER_CONSTANT, value=padColor)
 
     return scaled_img
-
-
-def getMacAddr():
-    return str(gma())
