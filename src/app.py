@@ -3,7 +3,7 @@ from time import sleep
 from klein import Klein
 from pathlib import Path
 from zeroConfDNS import FlaskServerListener
-from multiprocessing import Process, Pipe
+from multiprocessing import Process, Pipe,freeze_support
 from daemonManager.classroom import Classroom
 from zeroconf import ServiceBrowser, Zeroconf
 
@@ -21,6 +21,7 @@ def runserver(interface, port, commPipe):
     app.run(interface, port, logfilename)
 
 if __name__ == '__main__':
+    freeze_support()
     fp = open(CONFIGPATH+"config.toml", mode="rb")
     config = tomli.load(fp)
     fp.close()

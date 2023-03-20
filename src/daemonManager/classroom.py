@@ -40,7 +40,6 @@ class Classroom():
 
     def loadPreviousData(self):
         if os.path.exists(self.todayDir+'closed.json'):
-            self.onTime = False
             print('Students are now Late')
             
         for stud in os.listdir(self.todayDir):
@@ -52,7 +51,7 @@ class Classroom():
                 continue
 
     def classLoop(self):
-        cam = cv2.VideoCapture(0)
+        cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
         while (cam.isOpened()) and self.close == False:
             if self.commPipe.poll():
                 res = self.commPipe.recv()
@@ -64,6 +63,8 @@ class Classroom():
                     continue
                 else:
                     self.detectFace(image)
+        cam.release() 
+        print("Closing Server.")
 
     def manageMsg(self, msg):
         switcher = {
