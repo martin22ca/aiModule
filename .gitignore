@@ -36,3 +36,5 @@ build/
 src/recogLib/__pycache__/
 
 0.0.0.0
+
+*.log

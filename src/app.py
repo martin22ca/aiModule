@@ -1,7 +1,8 @@
-import tomli
+import os
 from time import sleep
 from klein import Klein
 from pathlib import Path
+from configparser import ConfigParser
 from zeroConfDNS import FlaskServerListener
 from multiprocessing import Process, Pipe,freeze_support
 from daemonManager.classroom import Classroom
@@ -9,12 +10,15 @@ from zeroconf import ServiceBrowser, Zeroconf
 
 CONFIGPATH = (__file__.split("app.py"))[0] 
 
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 def runserver(interface, port, commPipe):
-    logfilename = open('0.0.0.0:' + str(port) + '.log', 'a')
+    logfilename = open('server'+ str(port) + '.log', 'a')
     app = Klein()
 
     @app.route('/close', methods=['GET'])
     def helloF(request):
+        
         commPipe.send([0, 0])
         return 'Closing Server'
 
@@ -22,11 +26,14 @@ def runserver(interface, port, commPipe):
 
 if __name__ == '__main__':
     freeze_support()
-    fp = open(CONFIGPATH+"config.toml", mode="rb")
-    config = tomli.load(fp)
-    fp.close()
 
-    CLASSROOMNUM = config['constant']['classroom']
+    configur = ConfigParser()
+    configur.read(os.path.join(__location__,'config.ini'))
+
+    CLASSROOMNUM = configur.getint('CONFIG','numClass')
+    CLASSROOMNAME = configur.get('CONFIG','nameClass')
+    MODELVERSION = configur.get('VERSION','knnModel')
+
     MODELSPATH = Path(__file__).parent.resolve()
 
     zeroconf = Zeroconf()
@@ -37,16 +44,16 @@ if __name__ == '__main__':
     while listener.serverIp is None:
         sleep(1)
     
+
     serverIP = listener.serverIp
 
     del listener,browser,zeroconf
     
     aPipe, bPipe = Pipe(duplex=True)
-    CLASSROOMNUM = config['constant']['classroom']
     
-    todayClass = Classroom(CLASSROOMNUM, aPipe , serverIP)
+    todayClass = Classroom(CLASSROOMNUM, CLASSROOMNAME,MODELVERSION, aPipe , serverIP)
 
-    serverLoop = Process(target=runserver, args=('localhost', 9022, bPipe))
+    serverLoop = Process(target=runserver, args=('0.0.0.0', 9022, bPipe))
     serverLoop.start()
     todayClass.classLoop()
     serverLoop.terminate()

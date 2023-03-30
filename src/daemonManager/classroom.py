@@ -11,14 +11,16 @@ from recogLib.faceRecog import encodeFace, predictClass, findFaces, loadKNN, loa
 from recogLib.utils import resizeAndPad
 
 class Classroom():
-    def __init__(self, idClassroom,commPipe,serverIp):
+    def __init__(self, classroomNumber,classroomName,modelVersion, commPipe,serverIp):
         ipAddress = gethostbyname(gethostname()+".local")
         attendenceDir = str(Path.home())+ '/attendence/'
 
         if not os.path.exists(attendenceDir):
             os.makedirs(attendenceDir)
 
-        self.idClassroom = idClassroom
+        self.classroomNumber = classroomNumber
+        self.classroomName = classroomName
+        self.modelVersion = modelVersion
         self.close = False
         self.mainServerIp = serverIp
         self.onTime = True
@@ -37,6 +39,8 @@ class Classroom():
 
         else:
             self.loadPreviousData()
+
+        
 
     def loadPreviousData(self):
         if os.path.exists(self.todayDir+'closed.json'):
@@ -63,8 +67,28 @@ class Classroom():
                     continue
                 else:
                     self.detectFace(image)
-        cam.release() 
-        print("Closing Server.")
+
+        closingTime = time.time()
+        timerDuration = 40*60
+        print("Closing Server in 40 min.")
+        while (cam.isOpened()):
+            elapsedTime = time.time() - closingTime
+            if elapsedTime >= timerDuration:
+                # Exit the program
+                print("Closing Server.")
+                cam.release() 
+                os._exit(0)
+            if self.commPipe.poll():
+                res = self.commPipe.recv()
+                self.manageMsg(res)
+            else:
+                success, image = cam.read()
+                if not success:
+                    print("Ignoring empty camera frame.")
+                    continue
+                else:
+                    self.detectFace(image)
+
 
     def manageMsg(self, msg):
         switcher = {

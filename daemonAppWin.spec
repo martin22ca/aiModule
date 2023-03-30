@@ -8,8 +8,8 @@ added_files = [
          ( 'src/recogLib/models/knnPickleFile.pickle', 'recogLib/models' ),
          ( 'src/recogLib/models/namesFile.pickle', 'recogLib/models' ),
          ( 'src/recogLib/models/shape_predictor_5_face_landmarks.dat', 'recogLib/models' ),
-         ( 'config.toml','.'),
-         ( '.venv/Lib/site-packages/mediapipe/modules', 'mediapipe/modules')
+         ( '.venv/Lib/site-packages/mediapipe/modules', 'mediapipe/modules'),
+         ( 'src/config.ini', '.')
          ]
 
 
