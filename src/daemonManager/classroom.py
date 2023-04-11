@@ -6,25 +6,21 @@ import requests
 import base64
 from pathlib import Path
 from datetime import datetime, date
-from socket import gethostbyname,gethostname
 from recogLib.faceRecog import encodeFace, predictClass, findFaces, loadKNN, loadDetectionModel, loadRecognitionModel
 from recogLib.utils import resizeAndPad
 
 class Classroom():
-    def __init__(self, classroomNumber,classroomName,modelVersion, commPipe,serverIp):
-        ipAddress = gethostbyname(gethostname()+".local")
+    def __init__(self, idClassroom, commPipe,serverIp):
+
         attendenceDir = str(Path.home())+ '/attendence/'
 
         if not os.path.exists(attendenceDir):
             os.makedirs(attendenceDir)
 
-        self.classroomNumber = classroomNumber
-        self.classroomName = classroomName
-        self.modelVersion = modelVersion
+        self.idClassroom = idClassroom
         self.close = False
         self.mainServerIp = serverIp
         self.onTime = True
-        self.ipAddr = ipAddress
 
         self.students = {}
         self.todayDir = attendenceDir+str(date.today())+'/'
@@ -55,7 +51,7 @@ class Classroom():
                 continue
 
     def classLoop(self):
-        cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        cam = cv2.VideoCapture(0)
         while (cam.isOpened()) and self.close == False:
             if self.commPipe.poll():
                 res = self.commPipe.recv()
@@ -106,8 +102,7 @@ class Classroom():
                 student = {
 
                     "studentId": 1,
-                    "classroomIp":self.ipAddr,
-                    "classroomId": self.idClassroom,
+                    "idClassroom":self.idClassroom,
                     "certainty": float(pred),
                     "timeOfEntry": str(datetime.now().replace(second=0, microsecond=0)),
                     "onTime": self.onTime,
