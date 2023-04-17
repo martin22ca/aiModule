@@ -130,16 +130,45 @@ def predictClass(encoding, knnClasifier):
 
     encoding = np.array(encoding).reshape(1, -1)
     neighDis, neighIndx = knn.kneighbors(encoding,5,return_distance=True)
-    res = []
-    ### VER DISTANCIA    
-    distP = sum(neighDis[0])/5   
+    neighDis = neighDis[0]
+    neighIndx = neighIndx[0]
+    neigClasses = []
+    for i, j in enumerate(neighIndx):
+        neighDis[i] = neighDis[i]*10
+        neigClasses.append(names[int(j)])
+    
+    return knn_weighted_vote(neighDis, neigClasses)
 
-    for i in neighIndx[0]:
-        res.append(names[int(i)])
-    c = dict(Counter(res))
-    maxValue = max(c, key=c.get)
-    prob = (c[maxValue])/5
-    if prob >= 0.8:
-        return [maxValue,prob,neighDis]
-    else: 
+def knn_weighted_vote(distances, predictedClasses, threshold=1):
+    """
+    Takes in the distances and predicted classes from a k-nearest neighbors model, groups the predicted
+    classes by frequency, weights the frequency by distance, and returns the predicted class if the
+    highest weighted frequency is above a given threshold.
+    
+    Args:
+        distances (numpy.ndarray): Array of distances.
+        predictedClasses (list): List of predicted classes.
+        threshold (float): Threshold for the highest weighted frequency.
+        
+    Returns:
+        str: Predicted class if the highest weighted frequency is above the given threshold, otherwise None.
+    """
+    # Find the unique predicted classes and their frequencies
+    class_counts = Counter(predictedClasses)
+    
+    # Calculate the weighted frequency of each predicted class
+    weighted_counts = {}
+    for cls in class_counts:
+        indices = [i for i, c in enumerate(predictedClasses) if c == cls]
+        distances_to_cls = distances[indices]
+        weights = 1 / (distances_to_cls + 1e-8)
+        weighted_count = sum(weights)
+        weighted_counts[cls] = weighted_count
+    
+    # Find the predicted class with the highest weighted frequency
+    max_weighted_count = max(weighted_counts.values())
+    if max_weighted_count >= threshold:
+        predicted_class = max(weighted_counts, key=weighted_counts.get)
+        return [predicted_class, max_weighted_count] 
+    else:
         return None

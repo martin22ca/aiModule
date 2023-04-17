@@ -32,19 +32,16 @@ class Classroom():
 
         if not os.path.exists(self.todayDir):
             os.makedirs(self.todayDir)
-
         else:
+            print("continue")
             self.loadPreviousData()
 
         
 
-    def loadPreviousData(self):
-        if os.path.exists(self.todayDir+'closed.json'):
-            print('Students are now Late')
-            
+    def loadPreviousData(self):            
         for stud in os.listdir(self.todayDir):
             try:
-                with open(dir+stud+'/info.json', 'r') as f:
+                with open(self.todayDir+stud+'/info.json', 'r') as f:
                     student = json.load(f)
                     self.students[student['studentId']] = student
             except:
@@ -95,36 +92,33 @@ class Classroom():
     def setClose(self,inst):
         self.close = True 
 
-    def validateStudent(self, face, studentId, pred,dst):
+    def validateStudent(self, face, studentId, pred):
         if studentId not in self.students.keys():
-            if float(pred) > 0.8:
-                print('New student:', studentId)
-                student = {
+            print('New student:', studentId)
+            student = {
+                "studentId": str(studentId),
+                "idClassroom":self.idClassroom,
+                "certainty": float(pred),
+                "timeOfEntry": str(datetime.now().replace(second=0, microsecond=0)),
+                "onTime": self.onTime,
+            }
 
-                    "studentId": 1,
-                    "idClassroom":self.idClassroom,
-                    "certainty": float(pred),
-                    "timeOfEntry": str(datetime.now().replace(second=0, microsecond=0)),
-                    "onTime": self.onTime,
-                    "distance": dst.tolist()[0]
-                }
-                self.students[studentId] = student
-                studentDir = self.todayDir+'student-'+str(studentId)+'/'
-                os.makedirs(studentDir)
-                imgPath = studentDir+'student-picture.jpg'
-                with open(studentDir+"info.json", "w") as write_file:
-                    json.dump(student, write_file, indent=4)
-                face = resizeAndPad(face, (200, 200), 0)
-                cv2.imwrite(imgPath,face, [cv2.IMWRITE_JPEG_QUALITY, 93])
-                url = 'http://'+self.mainServerIp+':5000/attendece/newAttendence'
+            self.students[studentId] = student
+            studentDir = self.todayDir+'student-'+str(studentId)+'/'
+            os.makedirs(studentDir)
+            imgPath = studentDir+'student-picture.jpg'
+            with open(studentDir+"info.json", "w") as write_file:
+                json.dump(student, write_file, indent=4)
+            face = resizeAndPad(face, (200, 200), 0)
+            cv2.imwrite(imgPath,face, [cv2.IMWRITE_JPEG_QUALITY, 93])
+            url = 'http://'+self.mainServerIp+':5000/attendece/newAttendence'
 
-                #encode image
-                string_img = base64.b64encode(cv2.imencode('.jpg', face)[1]).decode()
-                student['image'] = string_img
-
-                #send json to server
-                response = requests.post(url , json=student)
-                return None
+            #encode image
+            string_img = base64.b64encode(cv2.imencode('.jpg', face)[1]).decode()
+            student['image'] = string_img
+            #send json to server
+            response = requests.post(url , json=student)
+            return None
         return None
 
     def detectFace(self, image):
@@ -136,7 +130,7 @@ class Classroom():
                 encoding = encodeFace(face, self.faceRecognizer)
                 prediction = predictClass(encoding, self.KNNModel)
                 if prediction != None:
-                    self.validateStudent(face, prediction[0], prediction[1],prediction[2])
+                    self.validateStudent(face, prediction[0], prediction[1])
 
 
 if __name__ == '__main__':
