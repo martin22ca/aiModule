@@ -36,8 +36,6 @@ class Classroom():
             print("continue")
             self.loadPreviousData()
 
-        
-
     def loadPreviousData(self):            
         for stud in os.listdir(self.todayDir):
             try:
@@ -86,11 +84,15 @@ class Classroom():
     def manageMsg(self, msg):
         switcher = {
             0: self.setClose,
+            1: self.hello,
         }
         return switcher[msg[0]](msg[1])
 
     def setClose(self,inst):
         self.close = True 
+    
+    def hello(self,inst):
+        print("me saludan")
 
     def validateStudent(self, face, studentId, pred):
         if studentId not in self.students.keys():

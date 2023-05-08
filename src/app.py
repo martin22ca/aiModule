@@ -17,15 +17,20 @@ def runserver(interface, port, commPipe):
     app = Klein()
 
     @app.route('/close', methods=['GET'])
-    def helloF(request):
+    def close(request):
         commPipe.send([0, 0])
         return 'Closing Server'
+    
+    @app.route('/hello', methods=['GET'])
+    def helloF(request):
+        commPipe.send([1, 1])
+        print("me saludan")
+        return True
 
     app.run(interface, port, logfilename)
 
 if __name__ == '__main__':
     freeze_support()
-
     zeroconf = Zeroconf()
     listener = FlaskServerListener('flaskServer')
     browser = ServiceBrowser(zeroconf, "_http._tcp.local.", listener)
@@ -46,7 +51,7 @@ if __name__ == '__main__':
     
     todayClass = Classroom(idClassroom, aPipe , serverIP)
 
-    serverLoop = Process(target=runserver, args=('0.0.0.0', 9022, bPipe))
+    serverLoop = Process(target=runserver, args=('0.0.0.0', 3023, bPipe))
     serverLoop.start()
     todayClass.classLoop()
     serverLoop.terminate()
