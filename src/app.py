@@ -1,8 +1,8 @@
 import os
-import appdirs
 from time import sleep
 from klein import Klein
 from pathlib import Path
+from platformdirs import *
 from zeroConfDNS import FlaskServerListener
 from multiprocessing import Process, Pipe, freeze_support
 from daemonManager.classroom import Classroom
@@ -11,7 +11,7 @@ from zeroconf import ServiceBrowser, Zeroconf
 
 CONFIGPATH = (__file__.split("app.py"))[0]
 PORT = '5000'
-DATA_DIR = appdirs.user_data_dir("faceRecogApp", "MartinCaceres")
+DATA_DIR = user_data_dir("faceRecogApp", "mca_INC")
 
 __location__ = os.path.realpath(os.path.join(
     os.getcwd(), os.path.dirname(__file__)))

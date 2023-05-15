@@ -89,6 +89,7 @@ def configServer(serverIP, configDir, dataDir):
 
 
 def setupFiles(configDir, dataDir):
+    print('Files location IN: ', dataDir)
     if not (os.path.exists(dataDir+'/config.ini')):
         print(dataDir)
         copyfile(configDir+'/config.ini', dataDir+'/config.ini')
