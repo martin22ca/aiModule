@@ -1,14 +1,18 @@
 from json import loads
 from configparser import ConfigParser
+from distutils.dir_util import copy_tree
 from socket import gethostbyname, gethostname
+from shutil import copyfile
 import zipfile
 import io
+import os
 import requests
 
 
-def configServer(serverIP, configPath):
+def configServer(serverIP, configDir, dataDir):
+    setupFiles(configDir, dataDir)
     configur = ConfigParser()
-    configur.read(configPath+'config.ini')
+    configur.read(dataDir+'/config.ini')
 
     CLASSROOMNUM = configur.getint('CONFIG', 'numClass')
     CLASSROOMNAME = configur.get('CONFIG', 'nameClass')
@@ -36,18 +40,18 @@ def configServer(serverIP, configPath):
         idClassroom = configur.getint('CONFIG', 'idClassroom')
         data["idClassroom"] = idClassroom
         response = requests.get(
-            'http://'+serverIP+":5000/classroom/", json=data)
+            'http://'+serverIP+"/classroom/", json=data)
         print('Update ip')
     else:
         response = requests.get(
-            'http://'+serverIP+":5000/classroom/", json=data)
+            'http://'+serverIP+"/classroom/", json=data)
         print('Setting new id')
         res = loads(response.content.decode())
         idClassroom = str(res['idClassroom'])
         configur.set('CONFIG', 'idClassroom', idClassroom)
 
     upResponse = requests.get(
-        'http://'+serverIP+":5000/recog/update", json=versions)
+        'http://'+serverIP+"/recog/update", json=versions)
 
     if upResponse.status_code == 200:
         responseData = upResponse.content
@@ -66,12 +70,12 @@ def configServer(serverIP, configPath):
             if file_dict['knn']:
                 knn_new_version = upResponse.headers.get('knnNewVersion')
                 configur.set('VERSION', 'knn', knn_new_version)
-                with open(configPath+'models/knnPickleFile.pickle', 'wb') as f:
+                with open(dataDir+'/models/knnPickleFile.pickle', 'wb') as f:
                     f.write(file_dict['knn'])
             if file_dict['names']:
                 names_new_version = upResponse.headers.get('namesNewVersion')
                 configur.set('VERSION', 'names', names_new_version)
-                with open(configPath+'/models/namesFile.pickle', 'wb') as f:
+                with open(dataDir+'/models/namesFile.pickle', 'wb') as f:
                     f.write(file_dict['names'])
         else:
             print('No data was received from the server.')
@@ -79,6 +83,13 @@ def configServer(serverIP, configPath):
     else:
         print(f'No Problem {response.status_code}.')
 
-    with open(configPath+'config.ini', 'w') as inifile:
+    with open(dataDir+'/config.ini', 'w') as inifile:
         configur.write(inifile)
     return idClassroom
+
+
+def setupFiles(configDir, dataDir):
+    if not (os.path.exists(dataDir+'/config.ini')):
+        print(dataDir)
+        copyfile(configDir+'/config.ini', dataDir+'/config.ini')
+        copy_tree(configDir+'/models/', dataDir+'/models/')

@@ -11,12 +11,10 @@ from recogLib.utils import resizeAndPad
 
 
 class Classroom():
-    def __init__(self, idClassroom, commPipe, serverIp, configPath):
+    def __init__(self, idClassroom, commPipe, serverIp, dataDir):
 
-        attendenceDir = str(Path.home()) + '/attendence/'
-
-        if not os.path.exists(attendenceDir):
-            os.makedirs(attendenceDir)
+        attendenceDir = dataDir+'/attendence/'
+        os.makedirs(attendenceDir, exist_ok=True)
 
         self.idClassroom = idClassroom
         self.close = False
@@ -24,11 +22,10 @@ class Classroom():
         self.onTime = True
 
         self.students = {}
-        self.configPath = configPath
         self.todayDir = attendenceDir+str(date.today())+'/'
         self.faceDetector = loadDetectionModel()
-        self.faceRecognizer = loadRecognitionModel(configPath)
-        self.KNNModel = loadKNN(configPath)
+        self.faceRecognizer = loadRecognitionModel(dataDir+'/')
+        self.KNNModel = loadKNN(dataDir+'/')
         self.prevTime = time.time()
         self.commPipe = commPipe
 
@@ -86,7 +83,6 @@ class Classroom():
             print("No Camera available!")
             print("The program will close")
             time.sleep(10)
-            
 
     def manageMsg(self, msg):
         switcher = {
@@ -120,7 +116,7 @@ class Classroom():
                 json.dump(student, write_file, indent=4)
             face = resizeAndPad(face, (200, 200), 0)
             cv2.imwrite(imgPath, face, [cv2.IMWRITE_JPEG_QUALITY, 93])
-            url = 'http://'+self.mainServerIp+':5000/attendece/newAttendence'
+            url = 'http://'+self.mainServerIp+'/attendece/newAttendence'
 
             # encode image
             string_img = base64.b64encode(
