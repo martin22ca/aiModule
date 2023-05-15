@@ -5,9 +5,10 @@ import zipfile
 import io
 import requests
 
-def configServer(serverIP, iniPath):
+
+def configServer(serverIP, configPath):
     configur = ConfigParser()
-    configur.read(iniPath)
+    configur.read(configPath+'config.ini')
 
     CLASSROOMNUM = configur.getint('CONFIG', 'numClass')
     CLASSROOMNAME = configur.get('CONFIG', 'nameClass')
@@ -25,6 +26,8 @@ def configServer(serverIP, iniPath):
     }
 
     versions = {
+        "classNumber": CLASSROOMNUM,
+        "className": CLASSROOMNAME,
         'Knn': KNN,
         'Names': NAMES,
     }
@@ -41,21 +44,17 @@ def configServer(serverIP, iniPath):
         print('Setting new id')
         res = loads(response.content.decode())
         idClassroom = str(res['idClassroom'])
-
         configur.set('CONFIG', 'idClassroom', idClassroom)
 
     upResponse = requests.get(
         'http://'+serverIP+":5000/recog/update", json=versions)
+
     if upResponse.status_code == 200:
-
-        knn_new_version = upResponse.headers.get('knnNewVersion')
-        names_new_version = upResponse.headers.get('namesNewVersion')
-        configur.set('VERSION', 'knn', knn_new_version)
-        configur.set('VERSION', 'names', names_new_version)
-
         responseData = upResponse.content
+        update = upResponse.headers.get('update')
         # Check if the bytes are not empty
-        if responseData:
+        print("Updating Models")
+        if responseData and update:
             # Save the pickled objects to files
             zip_data = io.BytesIO(responseData)
             file_dict = {}
@@ -65,17 +64,21 @@ def configServer(serverIP, iniPath):
                         file_dict[file_info.filename] = file.read()
 
             if file_dict['knn']:
-                with open('src/recogLib/models/knnPickleFile.pickle', 'wb') as f:
+                knn_new_version = upResponse.headers.get('knnNewVersion')
+                configur.set('VERSION', 'knn', knn_new_version)
+                with open(configPath+'models/knnPickleFile.pickle', 'wb') as f:
                     f.write(file_dict['knn'])
             if file_dict['names']:
-                with open('src/recogLib/models/namesFile.pickle', 'wb') as f:
+                names_new_version = upResponse.headers.get('namesNewVersion')
+                configur.set('VERSION', 'names', names_new_version)
+                with open(configPath+'/models/namesFile.pickle', 'wb') as f:
                     f.write(file_dict['names'])
         else:
             print('No data was received from the server.')
 
     else:
-        print(f'Request failed with status code {response.status_code}.')
+        print(f'No Problem {response.status_code}.')
 
-    with open(iniPath, 'w') as inifile:
+    with open(configPath+'config.ini', 'w') as inifile:
         configur.write(inifile)
     return idClassroom

@@ -8,32 +8,31 @@ import mediapipe as mp
 from collections import Counter
 from recogLib.utils import getAngle, getNewLocations, rotate_image, resizeAndPad
 
-MODELSDIR = (__file__.split("faceRecog.py"))[0] + 'models/'
 
-def loadKNN():
+def loadKNN(configPath):
     """
     Returns an K-Nearest Neighbors Model with the encodings for the faces
 
     :return: an K-Nearest Neighbors Model with the encodings for the faces
     """
 
-    with (open(MODELSDIR + 'knnPickleFile.pickle', 'rb')) as f:
+    with (open(configPath + 'models/knnPickleFile.pickle', 'rb')) as f:
         knn = pickle.load(f)
-    with(open(MODELSDIR + 'namesFile.pickle', 'rb')) as f:
+    with (open(configPath + 'models/namesFile.pickle', 'rb')) as f:
         names = pickle.load(f)
-    return knn,names
+    return knn, names
 
 
-def loadRecognitionModel():
+def loadRecognitionModel(configPath):
     """
     Returns the models required to encode the faces
 
     :return: the models required to encode the faces
     """
     pose_predictor_5_point = dlib.shape_predictor(
-        MODELSDIR+'shape_predictor_5_face_landmarks.dat')
+        configPath + 'models/shape_predictor_5_face_landmarks.dat')
     face_encoder = dlib.face_recognition_model_v1(
-        MODELSDIR+'dlib_face_recognition_resnet_model_v1.dat')
+        configPath + 'models/dlib_face_recognition_resnet_model_v1.dat')
 
     return pose_predictor_5_point, face_encoder
 
@@ -48,6 +47,7 @@ def loadDetectionModel():
     mp_face_detection = mp.solutions.face_detection.FaceDetection(
         model_selection=1, min_detection_confidence=0.8).process
     return mp_face_detection, getPoints
+
 
 def findFaces(image, faceDetector):
     """
@@ -117,6 +117,7 @@ def encodeFace(face_image, encoderModel, num_jitters=1):
         face_image, raw_landmarks, num_jitters)
     return encoding
 
+
 def predictClass(encoding, knnClasifier):
     """
     Returns an array of the predicted Student and its probabilty
@@ -129,33 +130,34 @@ def predictClass(encoding, knnClasifier):
     names = knnClasifier[1]
 
     encoding = np.array(encoding).reshape(1, -1)
-    neighDis, neighIndx = knn.kneighbors(encoding,5,return_distance=True)
+    neighDis, neighIndx = knn.kneighbors(encoding, 5, return_distance=True)
     neighDis = neighDis[0]
     neighIndx = neighIndx[0]
     neigClasses = []
     for i, j in enumerate(neighIndx):
         neighDis[i] = neighDis[i]*10
         neigClasses.append(names[int(j)])
-    
+
     return knn_weighted_vote(neighDis, neigClasses)
+
 
 def knn_weighted_vote(distances, predictedClasses, threshold=1):
     """
     Takes in the distances and predicted classes from a k-nearest neighbors model, groups the predicted
     classes by frequency, weights the frequency by distance, and returns the predicted class if the
     highest weighted frequency is above a given threshold.
-    
+
     Args:
         distances (numpy.ndarray): Array of distances.
         predictedClasses (list): List of predicted classes.
         threshold (float): Threshold for the highest weighted frequency.
-        
+
     Returns:
         str: Predicted class if the highest weighted frequency is above the given threshold, otherwise None.
     """
     # Find the unique predicted classes and their frequencies
     class_counts = Counter(predictedClasses)
-    
+
     # Calculate the weighted frequency of each predicted class
     weighted_counts = {}
     for cls in class_counts:
@@ -164,11 +166,11 @@ def knn_weighted_vote(distances, predictedClasses, threshold=1):
         weights = 1 / (distances_to_cls + 1e-8)
         weighted_count = sum(weights)
         weighted_counts[cls] = weighted_count
-    
+
     # Find the predicted class with the highest weighted frequency
     max_weighted_count = max(weighted_counts.values())
     if max_weighted_count >= threshold:
         predicted_class = max(weighted_counts, key=weighted_counts.get)
-        return [predicted_class, max_weighted_count] 
+        return [predicted_class, max_weighted_count]
     else:
         return None
