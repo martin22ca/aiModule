@@ -42,15 +42,7 @@ if __name__ == '__main__':
             | Bienvenido al programa de Reconocmiento facial!   |
             |---------------------------------------------------|
             |                                                   |
-            |                                                   |
-            |                                                   |
-            |                                                   |
-            |                                                   |
-            |                                                   |
-            |                                                   |
-            |                                                   |
-            |                                                   |
-            |                                                   |
+            |               Serching for server...              |
             +---------------------------------------------------+"""
               )
         freeze_support()
