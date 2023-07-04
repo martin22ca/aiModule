@@ -11,14 +11,16 @@ from recogLib.utils import resizeAndPad
 
 
 class Classroom():
-    def __init__(self, idClassroom, commPipe, serverIp, dataDir):
+    def __init__(self, configs, commPipe, dataDir):
 
         attendenceDir = dataDir+'/attendence/'
         os.makedirs(attendenceDir, exist_ok=True)
 
-        self.idClassroom = idClassroom
         self.close = False
-        self.mainServerIp = serverIp
+        self.idClassroom = configs[0]
+        self.mainServerIp = configs[1]
+        self.debug = configs[2]
+        self.rotation = configs[3]
         self.onTime = True
 
         self.students = {}
@@ -128,8 +130,14 @@ class Classroom():
         return None
 
     def detectFace(self, image):
+        image = self.rotateImg(self.rotation,image)
         faces = findFaces(image, self.faceDetector)
+        cv2.imshow('imagen',image)
+        cv2.waitKey(2)
         for i, face in enumerate(faces):
+            A = 'Cara_'+ str(i)
+            cv2.imshow(A,face)
+            cv2.waitKey(2)
             now = time.time()
             if (now - self.prevTime) > 0.6:
                 self.prevTime = now
@@ -149,6 +157,16 @@ class Classroom():
 
         # No valid camera found
         return -1
+
+    def rotateImg(self,rotateAmount,image):
+        angle = 90 * rotateAmount
+        height, width = image.shape[:2]
+        center = (width // 2, height // 2)
+
+        rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
+        rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
+
+        return rotated_image
 
 
 if __name__ == '__main__':

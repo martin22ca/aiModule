@@ -3,11 +3,9 @@ from time import sleep
 from klein import Klein
 from pathlib import Path
 from platformdirs import *
-from zeroConfDNS import FlaskServerListener
 from multiprocessing import Process, Pipe, freeze_support
 from daemonManager.classroom import Classroom
-from daemonManager.config import configServer
-from zeroconf import ServiceBrowser, Zeroconf
+from daemonManager.config import serverSetup
 
 CONFIGPATH = (__file__.split("app.py"))[0]
 PORT = '5000'
@@ -37,46 +35,26 @@ def runserver(interface, port, commPipe):
 
 if __name__ == '__main__':
     try:
+        freeze_support()
         print("""
             +---------------------------------------------------+
             | Bienvenido al programa de Reconocmiento facial!   |
-            |---------------------------------------------------|
-            |                                                   |
-            |               Serching for server...              |
-            +---------------------------------------------------+"""
-              )
-        freeze_support()
-        zeroconf = Zeroconf()
-        listener = FlaskServerListener('flaskServer')
-        browser = ServiceBrowser(zeroconf, "_http._tcp.local.", listener)
-
-        print('Serching for server')
-        count = 0
-        while listener.serverIp is None or count > 60:
-            try:
-                sleep(1)
-                count = + 1
-            except Exception as e:
-                print(f"Exception occurred: {e}")
-                # Reset the program or take appropriate action
-
-        serverIP = listener.serverIp+':'+PORT
-
-        del listener, browser, zeroconf
-
-        idClassroom = configServer(serverIP, CONFIGPATH,DATA_DIR)
-
-        MODELSPATH = Path(__file__).parent.resolve()
-
-        aPipe, bPipe = Pipe(duplex=True)
-
-        todayClass = Classroom(idClassroom, aPipe, serverIP, DATA_DIR)
-
-        serverLoop = Process(target=runserver, args=(
-            '0.0.0.0', 3023, bPipe))
-        serverLoop.start()
-        todayClass.classLoop()
-        serverLoop.terminate()
+            +---------------------------------------------------+
+            """)
+        sleep(2)
+        configs = serverSetup(CONFIGPATH, DATA_DIR).configServer()
+        if configs == None:
+            sleep(5)
+        else:
+            MODELSPATH = Path(__file__).parent.resolve()
+            aPipe, bPipe = Pipe(duplex=True)
+            todayClass = Classroom(configs, aPipe, DATA_DIR)
+            serverLoop = Process(target=runserver, args=(
+                '0.0.0.0', 3023, bPipe))
+            
+            serverLoop.start()
+            todayClass.classLoop()
+            serverLoop.terminate()
     except Exception as e:
-        print("Error de sistema:",e)
+        print("Error de sistema:", e)
         sleep(10)
