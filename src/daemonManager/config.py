@@ -31,7 +31,7 @@ class serverSetup():
     def setupFiles(self, configDir, dataDir):
         print('*- Archivos Localizados en: ', dataDir)
         if not (os.path.exists(dataDir+'/config.ini')):
-            print(dataDir)
+            os.makedirs(dataDir, exist_ok=True)
             copyfile(configDir+'/config.ini', dataDir+'/config.ini')
             copy_tree(configDir+'/models/', dataDir+'/models/')
         return None
@@ -54,7 +54,7 @@ class serverSetup():
         with open(self.dataDir+'/config.ini', 'w') as inifile:
             self.configur.write(inifile)
 
-        return idClassroom, ipServer, self.configur.getint('CONFIG', 'debug'), self.configur.getint('CAM', 'rotation') 
+        return idClassroom, ipServer, self.configur.getint('CONFIG', 'debug'), self.configur.getint('CAM', 'rotation')
 
     def configId(self, ipServer):
         try:
