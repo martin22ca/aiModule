@@ -55,7 +55,7 @@ class serverSetup():
         with open(self.dataDir+'/config.ini', 'w') as inifile:
             self.configur.write(inifile)
 
-        return idClassroom, ipServer, self.configur.getint('CONFIG', 'debug'), self.configur.getint('CAM', 'rotation')
+        return idClassroom, ipServer, self.configur.getint('CAM', 'visible'), self.configur.getint('CAM', 'rotation')
 
     def configId(self, ipServer):
         try:

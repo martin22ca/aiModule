@@ -19,7 +19,7 @@ class Classroom():
         self.close = False
         self.idClassroom = configs[0]
         self.mainServerIp = configs[1]
-        self.debug = configs[2]
+        self.visible = configs[2]
         self.rotation = configs[3]
         self.onTime = True
 
@@ -130,14 +130,16 @@ class Classroom():
         return None
 
     def detectFace(self, image):
-        image = self.rotateImg(self.rotation,image)
+        image = self.rotateImg(self.rotation, image)
         faces = findFaces(image, self.faceDetector)
-        cv2.imshow('imagen',image)
-        cv2.waitKey(2)
-        for i, face in enumerate(faces):
-            A = 'Cara_'+ str(i)
-            cv2.imshow(A,face)
+        if self.visible == 1:
+            cv2.imshow('imagen', image)
             cv2.waitKey(2)
+        for i, face in enumerate(faces):
+            if self.visible == 1:
+                A = 'Cara_' + str(i)
+                cv2.imshow(A, face)
+                cv2.waitKey(2)
             now = time.time()
             if (now - self.prevTime) > 0.6:
                 self.prevTime = now
@@ -158,7 +160,7 @@ class Classroom():
         # No valid camera found
         return -1
 
-    def rotateImg(self,rotateAmount,image):
+    def rotateImg(self, rotateAmount, image):
         angle = 90 * rotateAmount
         height, width = image.shape[:2]
         center = (width // 2, height // 2)
