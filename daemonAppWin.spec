@@ -4,10 +4,10 @@
 block_cipher = None
 
 added_files = [
-         ( 'src/recogLib/models/dlib_face_recognition_resnet_model_v1.dat', 'recogLib/models' ),
-         ( 'src/recogLib/models/knnPickleFile.pickle', 'recogLib/models' ),
-         ( 'src/recogLib/models/namesFile.pickle', 'recogLib/models' ),
-         ( 'src/recogLib/models/shape_predictor_5_face_landmarks.dat', 'recogLib/models' ),
+         ( 'src/models/dlib_face_recognition_resnet_model_v1.dat', 'recogLib/models' ),
+         ( 'src/models/knnPickleFile.pickle', 'recogLib/models' ),
+         ( 'src/models/namesFile.pickle', 'recogLib/models' ),
+         ( 'src/models/shape_predictor_5_face_landmarks.dat', 'recogLib/models' ),
          ( '.venv/Lib/site-packages/mediapipe/modules', 'mediapipe/modules'),
          ( 'src/config.ini', '.')
          ]

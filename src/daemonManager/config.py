@@ -32,6 +32,7 @@ class serverSetup():
         print('*- Archivos Localizados en: ', dataDir)
         if not (os.path.exists(dataDir+'/config.ini')):
             os.makedirs(dataDir, exist_ok=True)
+            os.mkdir(dataDir+'/models/')
             copyfile(configDir+'/config.ini', dataDir+'/config.ini')
             copy_tree(configDir+'/models/', dataDir+'/models/')
         return None
