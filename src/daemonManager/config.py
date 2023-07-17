@@ -1,12 +1,13 @@
-from json import loads
-from configparser import ConfigParser
-from distutils.dir_util import copy_tree
 from socket import gethostbyname, gethostname
+from distutils.dir_util import copy_tree
+from configparser import ConfigParser
+from zipfile import ZipFile
 from shutil import copyfile
-import zipfile
-import io
-import os
+from json import loads
+from io import BytesIO
+from time import sleep
 import requests
+import os
 
 
 class serverSetup():
@@ -38,11 +39,11 @@ class serverSetup():
         return None
 
     def configServer(self):
-        print('*- Buscando servidor ....')
         ipServer = None
         if (self.configur.has_option('CONFIG', 'ipserver')):
             ipServer = self.configur.get('CONFIG', 'ipserver') + ':5000'
-            print('*- servidor en' + ipServer)
+            print('*- Buscando servidor en '+ ipServer +' ....')
+            sleep(2)
         else:
             print('*- No hay Ip Configurado')
             return None
@@ -68,6 +69,7 @@ class serverSetup():
                 return idClassroom
             else:
                 print('*- Creando nuevo Curso')
+                sleep(2)
                 response = requests.get(
                     'http://'+ipServer+'/classroom/', json=self.data, timeout=5)
                 res = loads(response.content.decode())
@@ -75,7 +77,7 @@ class serverSetup():
                 self.configur.set('CONFIG', 'idClassroom', idClassroom)
                 return idClassroom
         except Exception as e:
-            print(e)
+            print("*- "+ str(e))
             return None
 
     def updateModels(self, ipServer):
@@ -85,11 +87,12 @@ class serverSetup():
             responseData = upResponse.content
             update = upResponse.headers.get('update')
             print("*- Actualizando Modelos")
+            sleep(2)
             if responseData and update:
 
-                zip_data = io.BytesIO(responseData)
+                zip_data = BytesIO(responseData)
                 file_dict = {}
-                with zipfile.ZipFile(zip_data, mode='r') as zip_file:
+                with ZipFile(zip_data, mode='r') as zip_file:
                     for file_info in zip_file.infolist():
                         with zip_file.open(file_info) as file:
                             file_dict[file_info.filename] = file.read()
