@@ -42,6 +42,7 @@ class serverSetup():
         ipServer = None
         if (self.configur.has_option('CONFIG', 'ipserver')):
             ipServer = self.configur.get('CONFIG', 'ipserver') + ':5000'
+            print('*- servidor en' + ipServer)
         else:
             print('*- No hay Ip Configurado')
             return None
@@ -63,23 +64,23 @@ class serverSetup():
                 idClassroom = self.configur.getint('CONFIG', 'idClassroom')
                 self.data["idClassroom"] = idClassroom
                 response = requests.get(
-                    'http://'+ipServer+'/classroom/', json=self.data, timeout=2)
+                    'http://'+ipServer+'/classroom/', json=self.data, timeout=5)
                 return idClassroom
             else:
                 print('*- Creando nuevo Curso')
                 response = requests.get(
-                    'http://'+ipServer+'/classroom/', json=self.data, timeout=2)
+                    'http://'+ipServer+'/classroom/', json=self.data, timeout=5)
                 res = loads(response.content.decode())
                 idClassroom = str(res['idClassroom'])
                 self.configur.set('CONFIG', 'idClassroom', idClassroom)
                 return idClassroom
-        except:
-            print('*- Timeout del servidor')
+        except Exception as e:
+            print(e)
             return None
 
     def updateModels(self, ipServer):
         upResponse = requests.get(
-            'http://'+ipServer+"/recog/update", json=self.data)
+            'http://'+ipServer+"/recog/update", json=self.data,timeout=5)
         if upResponse.status_code == 200:
             responseData = upResponse.content
             update = upResponse.headers.get('update')
