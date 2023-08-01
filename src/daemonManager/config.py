@@ -1,3 +1,4 @@
+from requests.exceptions import RequestException
 from socket import gethostbyname, gethostname
 from distutils.dir_util import copy_tree
 from configparser import ConfigParser
@@ -6,6 +7,7 @@ from shutil import copyfile
 from json import loads
 from io import BytesIO
 from time import sleep
+
 import requests
 import os
 
@@ -42,7 +44,7 @@ class serverSetup():
         ipServer = None
         if (self.configur.has_option('CONFIG', 'ipserver')):
             ipServer = self.configur.get('CONFIG', 'ipserver') + ':5000'
-            print('*- Buscando servidor en '+ ipServer +' ....')
+            print('*- Buscando servidor en ' + ipServer + ' ....')
             sleep(2)
         else:
             print('*- No hay Ip Configurado')
@@ -64,25 +66,27 @@ class serverSetup():
             if (self.configur.has_option('CONFIG', 'idClassroom')):
                 idClassroom = self.configur.getint('CONFIG', 'idClassroom')
                 self.data["idClassroom"] = idClassroom
-                response = requests.get(
-                    'http://'+ipServer+'/classroom/', json=self.data, timeout=5)
+                response = self.retryableGetRequest(
+                    'http://'+ipServer+'/classroom/', self.data)
+                if response == None: return None
                 return idClassroom
             else:
                 print('*- Creando nuevo Curso')
                 sleep(2)
-                response = requests.get(
-                    'http://'+ipServer+'/classroom/', json=self.data, timeout=5)
+                response = self.retryableGetRequest(
+                    'http://'+ipServer+'/classroom/', self.data)
+                if response == None: return None
                 res = loads(response.content.decode())
                 idClassroom = str(res['idClassroom'])
                 self.configur.set('CONFIG', 'idClassroom', idClassroom)
                 return idClassroom
         except Exception as e:
-            print("*- "+ str(e))
+            print("*- " + str(e))
             return None
 
     def updateModels(self, ipServer):
-        upResponse = requests.get(
-            'http://'+ipServer+"/recog/update", json=self.data,timeout=5)
+        upResponse = self.retryableGetRequest(
+            'http://'+ipServer+'/recog/update', self.data)
         if upResponse.status_code == 200:
             responseData = upResponse.content
             update = upResponse.headers.get('update')
@@ -112,3 +116,16 @@ class serverSetup():
                 print('*- No hay modelos Nuevos')
         else:
             print(f'Problem {upResponse.status_code}.')
+
+    def retryableGetRequest(self, url, data, timeout=5, retries=5):
+        for retry in range(retries):
+            try:
+                response = requests.get(url, json=data, timeout=timeout)
+                response.raise_for_status()  # Raise an exception for 4xx and 5xx status codes
+                return response
+            except RequestException as e:
+                print(f"*- Intento {retry + 1} fallido. Reintentando")
+                sleep(1)
+                if retry >= retries - 1:
+                    print("*- No se puedo conectar con el servidor.")
+                    break
