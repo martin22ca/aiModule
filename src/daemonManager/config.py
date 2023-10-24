@@ -43,7 +43,7 @@ class serverSetup():
     def configServer(self):
         ipServer = None
         if (self.configur.has_option('CONFIG', 'ipserver')):
-            ipServer = self.configur.get('CONFIG', 'ipserver') + ':5000'
+            ipServer = self.configur.get('CONFIG', 'ipserver') + ':3001'
             print('*- Buscando servidor en ' + ipServer + ' ....')
             sleep(2)
         else:
