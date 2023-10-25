@@ -34,7 +34,7 @@ class Classroom():
         if not os.path.exists(self.todayDir):
             os.makedirs(self.todayDir)
         else:
-            print("continue")
+            print("*- Continuo Dia")
             self.loadPreviousData()
 
     def loadPreviousData(self):
@@ -42,7 +42,7 @@ class Classroom():
             try:
                 with open(self.todayDir+stud+'/info.json', 'r') as f:
                     student = json.load(f)
-                    self.students[student['studentId']] = student
+                    self.students[int(student['studentId'])] = student
             except:
                 continue
 
@@ -107,7 +107,6 @@ class Classroom():
                 "idClassroom": self.idClassroom,
                 "certainty": float(pred),
                 "timeOfEntry": str(datetime.now().replace(second=0, microsecond=0)),
-                "onTime": self.onTime,
             }
 
             self.students[studentId] = student
