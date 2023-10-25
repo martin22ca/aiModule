@@ -36,8 +36,8 @@ class serverSetup():
         if not (os.path.exists(dataDir+'/config.ini')):
             os.makedirs(dataDir, exist_ok=True)
             os.mkdir(dataDir+'/models/')
-            copyfile(configDir+'/config.ini', dataDir+'/config.ini')
             copy_tree(configDir+'/models/', dataDir+'/models/')
+            copyfile(configDir+'/config.ini', dataDir+'/config.ini')
         return None
 
     def configServer(self):
@@ -66,15 +66,13 @@ class serverSetup():
             if (self.configur.has_option('CONFIG', 'idClassroom')):
                 idClassroom = self.configur.getint('CONFIG', 'idClassroom')
                 self.data["idClassroom"] = idClassroom
-                response = self.retryableGetRequest(
-                    'http://'+ipServer+'/classroom/', self.data)
+                response = self.retryableGetRequest('http://'+ipServer+'/modules/', self.data)
                 if response == None: return None
                 return idClassroom
             else:
-                print('*- Creando nuevo Curso')
+                requestCreate = 'http://'+ipServer+'/modules/newModule'
                 sleep(2)
-                response = self.retryableGetRequest(
-                    'http://'+ipServer+'/classroom/', self.data)
+                response = self.retryableGetRequest(requestCreate, self.data)
                 if response == None: return None
                 res = loads(response.content.decode())
                 idClassroom = str(res['idClassroom'])

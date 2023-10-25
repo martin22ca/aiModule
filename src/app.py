@@ -15,7 +15,6 @@ __location__ = os.path.realpath(os.path.join(
     os.getcwd(), os.path.dirname(__file__)))
 
 def runserver(interface, port, commPipe):
-    print()
     logfilename = open(DATA_DIR+'/server' + str(port) + '.log', 'a')
     app = Klein()
 
